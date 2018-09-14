@@ -5,7 +5,7 @@ require 'logger'
 require 'pp'
 
 module UKPlanningScraper
-  def self.search(search_url, criteria, options = {})
+  def self.search(search_url, params, options = {})
     default_options = {
       delay: 10,
     }
@@ -28,17 +28,17 @@ module UKPlanningScraper
     # form.action = form.action + '&searchCriteria.resultsPerPage=100'
 
     # Some councils don't have the received from/to dates on their form, eg Newham
-    form.send(:"date(applicationReceivedStart)", criteria[:received_from].strftime("%d/%m/%Y")) if criteria[:received_from]
-    form.send(:"date(applicationReceivedEnd)", criteria[:received_to].strftime("%d/%m/%Y")) if criteria[:received_to]
+    form.send(:"date(applicationReceivedStart)", params[:received_from].strftime("%d/%m/%Y")) if params[:received_from]
+    form.send(:"date(applicationReceivedEnd)", params[:received_to].strftime("%d/%m/%Y")) if params[:received_to]
 
-    form.send(:"date(applicationValidatedStart)", criteria[:validated_from].strftime("%d/%m/%Y")) if criteria[:validated_from]
-    form.send(:"date(applicationValidatedEnd)", criteria[:validated_to].strftime("%d/%m/%Y")) if criteria[:validated_to]
+    form.send(:"date(applicationValidatedStart)", params[:validated_from].strftime("%d/%m/%Y")) if params[:validated_from]
+    form.send(:"date(applicationValidatedEnd)", params[:validated_to].strftime("%d/%m/%Y")) if params[:validated_to]
 
-    form.send(:"searchCriteria\.description", criteria[:description])
+    form.send(:"searchCriteria\.description", params[:description])
     
     # Some councils don't have the applicant name on their form, eg Bexley
-    form.send(:"searchCriteria\.applicantName", criteria[:applicant_name]) if form.has_field? 'searchCriteria.applicantName'
-    form.send(:"searchCriteria\.caseType", criteria[:application_type])
+    form.send(:"searchCriteria\.applicantName", params[:applicant_name]) if form.has_field? 'searchCriteria.applicantName'
+    form.send(:"searchCriteria\.caseType", params[:application_type])
     page = form.submit
 
     loop do
