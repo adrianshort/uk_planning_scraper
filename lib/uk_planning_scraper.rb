@@ -15,8 +15,6 @@ module UKPlanningScraper
     @base_url = search_url.match(/(https?:\/\/.+?)\//)[1]
     
     apps = []
-    # Regex doesn't work for Newham, Greenwich, Tower Hamlets which don't have the Received date in the text
-    meta_regex = /Ref\. No:\s+(.+)\s+.+\s+Received:\s+(.+)\s+.+\s+Validated:\s+(.+)\s+.+\s+Status:\s+(.+)/
 
     agent = Mechanize.new
     puts "Getting: #{@search_url}"
@@ -48,18 +46,36 @@ module UKPlanningScraper
       puts "Found #{items.size} apps on this page."
 
       items.each do |app|
-        matches = app.at("p.metaInfo").inner_html.match(meta_regex)
+        data = {}
+
+        # Parse info line
+        info_line = app.at("p.metaInfo").inner_text.strip
+        bits = info_line.split('|').map { |e| e.strip.delete("\r\n") }
         
-        data = {
-          council_reference: matches[1].strip,
+        bits.each do |bit|
+          if matches = bit.match(/Ref\. No:\s+(.+)/)
+            data[:council_reference] = matches[1]
+          end
+
+          if matches = bit.match(/(Received|Registered):\s+(.+)/)
+            data[:date_received] = Date.parse(matches[2])
+          end
+          
+          if matches = bit.match(/Validated:\s+(.+)/)
+            data[:date_validated] = Date.parse(matches[1])
+          end
+
+          if matches = bit.match(/Status:\s+(.+)/)
+            data[:status] = matches[1]
+          end
+        end
+
+        data.merge!({
           scraped_at: Time.now,
-          date_received: Date.parse(matches[2]),
-          date_validated: Date.parse(matches[3]),
           info_url: @base_url + app.at('a')['href'],
           address: app.at('p.address').inner_text.strip,
           description: app.at('a').inner_text.strip,
-          status: matches[4].strip
-        }
+        })
         
         apps << data
       end
