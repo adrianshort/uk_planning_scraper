@@ -101,9 +101,15 @@ module UKPlanningScraper
         # Parse the summary tab for this app
 
         app[:scraped_at] = Time.now
-        # Does the Documents tab show if there are no documents?
-        app[:documents_count] = res.at('#tab_documents').inner_text.match(/\d+/)[0].to_i
-        app[:documents_url] = @base_url + res.at('#tab_documents')[:href]
+
+        # The Documents tab doesn't show if there are no documents (we get li.nodocuments instead)
+        if documents_link = res.at('#tab_documents')
+          app[:documents_count] = documents_link.inner_text.match(/\d+/)[0].to_i
+          app[:documents_url] = @base_url + documents_link[:href]
+        else
+          app[:documents_count] = 0
+          app[:documents_url] = nil
+        end
 
         # We need to find values in the table by using the th labels.
         # The row indexes/positions change from site to site (or even app to app) so we can't rely on that.
