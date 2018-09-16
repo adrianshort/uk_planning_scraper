@@ -146,7 +146,6 @@ module UKPlanningScraper
       else
         puts "Error: HTTP #{res.code}"
       end # if
-      pp app
     end # scrape summary tab for apps
     apps
   end # self.search
