@@ -103,14 +103,22 @@ module UKPlanningScraper
         app[:scraped_at] = Time.now
 
         # The Documents tab doesn't show if there are no documents (we get li.nodocuments instead)
-        if documents_link = res.at('#tab_documents')
-          app[:documents_count] = documents_link.inner_text.match(/\d+/)[0].to_i
-          app[:documents_url] = @base_url + documents_link[:href]
-        else
-          app[:documents_count] = 0
-          app[:documents_url] = nil
-        end
+        # Bradford has #tab_documents but without the document count on it
+        app[:documents_count] = 0
+        app[:documents_url] = nil
 
+        if documents_link = res.at('.associateddocument a')
+          if documents_link.inner_text.match(/\d+/)
+            app[:documents_count] = documents_link.inner_text.match(/\d+/)[0].to_i
+            app[:documents_url] = @base_url + documents_link[:href]
+          end
+        elsif documents_link = res.at('#tab_documents')
+          if documents_link.inner_text.match(/\d+/)
+            app[:documents_count] = documents_link.inner_text.match(/\d+/)[0].to_i
+            app[:documents_url] = @base_url + documents_link[:href]
+          end
+        end
+        
         # We need to find values in the table by using the th labels.
         # The row indexes/positions change from site to site (or even app to app) so we can't rely on that.
 
