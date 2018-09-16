@@ -90,6 +90,64 @@ module UKPlanningScraper
         break
       end
     end
+    
+    # Scrape the summary tab for each app
+    apps.each_with_index do |app, i|
+      sleep @options[:delay]
+      puts "#{i + 1} of #{apps.size}: #{app[:info_url]}"
+      res = agent.get(app[:info_url])
+      
+      if res.code == '200' # That's a String not an Integer, ffs
+        # Parse the summary tab for this app
+
+        app[:scraped_at] = Time.now
+        # Does the Documents tab show if there are no documents?
+        app[:documents_count] = res.at('#tab_documents').inner_text.match(/\d+/)[0].to_i
+        app[:documents_url] = @base_url + res.at('#tab_documents')[:href]
+
+        # We need to find values in the table by using the th labels.
+        # The row indexes/positions change from site to site (or even app to app) so we can't rely on that.
+
+        res.search('#simpleDetailsTable tr').each do |row|
+          key = row.at('th').inner_text.strip
+          value = row.at('td').inner_text.strip
+          
+          case key
+            when 'Reference'
+              app[:council_reference] = value
+            when 'Alternative Reference'
+              app[:alternative_reference] = value
+            when 'Planning Portal Reference'
+              app[:alternative_reference] = value
+            when 'Application Received'
+              app[:date_received] = Date.parse(value) if value != ''
+            when 'Application Registered'
+              app[:date_received] = Date.parse(value) if value != ''
+            when 'Application Validated'
+              app[:date_validated] = Date.parse(value) if value != ''
+            when 'Address'
+              app[:address] = value
+            when 'Proposal'
+              app[:description] = value
+            when 'Status'
+              app[:status] = value
+            when 'Decision'
+              app[:decision] = value
+            when 'Decision Issued Date'
+              app[:date_decision] = Date.parse(value) if value != ''
+            when 'Appeal Status'
+              app[:appeal_status] = value
+            when 'Appeal Decision'
+              app[:appeal_decision] = value
+            else
+              puts "Error: key '#{key}' not found"
+          end # case
+        end # each row
+      else
+        puts "Error: HTTP #{res.code}"
+      end # if
+      pp app
+    end # scrape summary tab for apps
     apps
-  end
-end
+  end # self.search
+end # module
