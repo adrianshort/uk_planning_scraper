@@ -1,3 +1,6 @@
+require 'mechanize'
+require 'pp'
+
 module UKPlanningScraper
   def self.scrape_idox(search_url, params, options)
     puts "Using Idox scraper."
