@@ -60,7 +60,6 @@ module UKPlanningScraper
       doc = Nokogiri::HTML(response.to_s)
       asp_vars = {
         '__VIEWSTATE' => doc.at('#__VIEWSTATE')['value'],
-        '__VIEWSTATEGENERATOR' => doc.at('#__VIEWSTATEGENERATOR')['value'],
         '__EVENTVALIDATION' => doc.at('#__EVENTVALIDATION')['value']
        }
     else
@@ -94,7 +93,7 @@ module UKPlanningScraper
     end
 
     rows = doc.search("table.display_table tr")
-    logger.info "Found #{rows.size - 1} applications in search results."
+    logger.info "Found #{rows.size - 1} applications in search results." # The first row is the header row
 
     # Iterate over search results
     rows.each do |row|
