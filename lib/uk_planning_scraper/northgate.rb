@@ -121,7 +121,7 @@ module UKPlanningScraper
           app[:date_received] = nil
         end
         
-        app[:decision] = cells[5].inner_text.strip
+        app[:decision] = cells[5].inner_text.strip if cells[5] # Some councils don't have this column, eg Hackney
         apps << app
       end
     end
