@@ -45,7 +45,7 @@ module UKPlanningScraper
         apps = self.scrape_northgate(authority.url, params, options)
       else
         # Not supported
-        raise "Planning system not supported for #{@name} at URL: #{@url}"
+        raise SystemNotSupportedError.new("Planning system not supported for #{@name} at URL: #{@url}")
       end
       
       # Post processing
