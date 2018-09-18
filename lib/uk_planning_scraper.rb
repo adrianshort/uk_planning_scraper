@@ -15,7 +15,6 @@ module UKPlanningScraper
     if params[:validated_days]
       params[:validated_to] = Date.today
       params[:validated_from] = Date.today - (params[:validated_days] - 1)
-      params[:validated_days].delete
     end
       
     # Received within the last n days
@@ -23,7 +22,6 @@ module UKPlanningScraper
     if params[:received_days]
       params[:received_to] = Date.today
       params[:received_from] = Date.today - (params[:received_days] - 1)
-      params[:received_days].delete
     end
     
     # Decided within the last n days
@@ -31,7 +29,6 @@ module UKPlanningScraper
     if params[:decided_days]
       params[:decided_to] = Date.today
       params[:decided_from] = Date.today - (params[:decided_days] - 1)
-      params[:decided_days].delete
     end
     
     # Select which scraper to use based on the URL
