@@ -22,7 +22,7 @@ module UKPlanningScraper
       'csbtnSearch' => 'Search' # required
     }
 
-    form_vars['txtProposal'] = params[:description]
+    form_vars['txtProposal'] = params[:keywords]
 
     # Date received from and to
     if params[:received_from] || params[:received_to]
@@ -39,6 +39,15 @@ module UKPlanningScraper
       form_vars['dateStart'] = params[:validated_from].to_s if params[:validated_from] # YYYY-MM-DD
       form_vars['dateEnd'] = params[:validated_to].to_s if params[:validated_to] # YYYY-MM-DD
     end
+
+    # Date decided from and to
+    if params[:decided_from] || params[:decided_to]
+      form_vars['cboSelectDateValue'] = 'DATE_DECISION'
+      form_vars['rbGroup'] = 'rbRange'
+      form_vars['dateStart'] = params[:decided_from].to_s if params[:decided_from] # YYYY-MM-DD
+      form_vars['dateEnd'] = params[:decided_to].to_s if params[:decided_to] # YYYY-MM-DD
+    end
+
 
     # form_vars.merge!({ 'cboStatusCode' => ENV['MORPH_STATUS']}) if ENV['MORPH_STATUS']
 

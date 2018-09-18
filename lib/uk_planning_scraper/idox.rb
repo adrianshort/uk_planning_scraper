@@ -24,7 +24,10 @@ module UKPlanningScraper
     form.send(:"date(applicationValidatedStart)", params[:validated_from].strftime("%d/%m/%Y")) if params[:validated_from]
     form.send(:"date(applicationValidatedEnd)", params[:validated_to].strftime("%d/%m/%Y")) if params[:validated_to]
 
-    form.send(:"searchCriteria\.description", params[:description])
+    form.send(:"date(applicationDecisionStart)", params[:decided_from].strftime("%d/%m/%Y")) if params[:decided_from]
+    form.send(:"date(applicationDecisionEnd)", params[:decided_to].strftime("%d/%m/%Y")) if params[:decided_to]
+
+    form.send(:"searchCriteria\.description", params[:keywords])
     
     # Some councils don't have the applicant name on their form, eg Bexley
     form.send(:"searchCriteria\.applicantName", params[:applicant_name]) if form.has_field? 'searchCriteria.applicantName'
