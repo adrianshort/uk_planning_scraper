@@ -68,6 +68,7 @@ end
 ```
 
 ### More search parameters
+
 ```ruby
 
 # Don't try these all at once
