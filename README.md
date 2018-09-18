@@ -6,7 +6,7 @@ This gem scrapes planning applications data from UK council/local planning autho
 
 This scraper gem doesn't use a database. Storing the output is up to you. It's just a convenient way to get the data.
 
-Currently this only works for some Idox sites. The ultimate aim is to provide a consistent interface in a single gem for all variants of all planning systems: Idox Public Access, Northgate Planning Explorer, OcellaWeb, and all the one-off systems.
+Currently this only works for Idox and Northgate sites. The ultimate aim is to provide a consistent interface in a single gem for all variants of all planning systems: Idox Public Access, Northgate Planning Explorer, OcellaWeb, Agile Planning and all the one-off systems.
 
 This project is not affiliated with any organisation.
 
@@ -29,34 +29,144 @@ Or install it yourself as:
 
 ## Usage
 
+### First, require your stuff
+
 ```ruby
 require 'uk_planning_scraper'
-require 'date'
 require 'pp'
+```
 
-# change this to the URL of the advanced search page for the council you want
-url = 'https://planning.anytown.gov.uk/online-applications/search.do?action=advanced'
+### Scrape from a council
 
-options = {
-  delay: 10, # seconds between scrape requests; optional, defaults to 10
-}
-
-params = {
-  validated_from: Date.today - 30, # Must be a Date object; optional
-  validated_to: Date.today, # Must be a Date object; optional
-  description: 'keywords to search for', # Optional
-}
-
-apps = UKPlanningScraper.search(url, params, options)
+```ruby
+apps = UKPlanningScraper::Authority.named('Westminster').scrape({ decided_days: 7 })
 pp apps
+```
+
+### Scrape from a bunch of councils
+
+```ruby
+auths = UKPlanningScraper::Authority.tagged('london')
+
+auths.each do |auth|
+  apps = auth.scrape({ decided_days: 7 })
+  pp apps # You'll probably want to save `apps` to your database here
+end
+```
+
+Yes, we just scraped the last week's planning decisions across the whole of London (actually 23 of the 35 authorities right now) with five lines of code.
+
+### Satisfy your niche interests
+
+```ruby
+auths = UKPlanningScraper::Authority.tagged('scotland')
+
+auths.each do |auth|
+  apps = auth.scrape({ validated_days: 7, keywords: 'launderette' })
+  pp apps # You'll probably want to save `apps` to your database here
+end
+```
+
+### More search parameters
+```ruby
+
+# Don't try these all at once
+params = {
+  received_to: Date.today,
+  received_from: Date.today - 30,
+  received_days: 7, # instead of received_to, received_from
+  validated_to: Date.today,
+  validated_from: Date.today - 30,
+  validated_days: 7, # instead of validated_to, validated_from
+  decided_to: Date.today,
+  decided_from: Date.today - 30,
+  decided_days: 7 # instead of decided_to, decided_from
+  keywords: "hip gable", # Check that the systems you're scraping return the results you expect for multiple keywords (AND or OR?)
+}
+
+apps = UKPlanningScraper::Authority.named('Camden').scrape(params)
 
 ```
 
-Try [ScraperWiki](https://github.com/openaustralia/scraperwiki-ruby) if you want a quick and easy way to throw the results into an SQLite database:
+### Save to a SQLite database
+
+This gem has no interest whatsoever in persistence. What you do with the data it outputs is up to you: relational databases, document stores, VHS and clay tablets are all blissfully none of its business. But using the [ScraperWiki](https://github.com/openaustralia/scraperwiki-ruby) gem is a really easy way to store your data:
 
 ```ruby
 require 'scraperwiki' # Must be installed, of course
-ScraperWiki.save_sqlite([:council_reference], apps)
+ScraperWiki.save_sqlite([:authority_name, :council_reference], apps)
+```
+
+That `apps` param can be a hash or an array of hashes, which is what gets returned by our `search()`.
+
+### Find authorities by tag
+
+Tags are always lowercase and one word.
+
+```ruby
+london_auths = UKPlanningScraper::Authority.tagged('london')
+```
+
+We've got tags for areas:
+
+- london
+- innerlondon
+- outerlondon
+- northlondon
+- southlondon
+- surrey
+- wales
+
+and software systems:
+- idox
+- northgate
+
+and whatever you'd like to add that would be useful to others.
+
+### More fun with Authority tags
+
+```ruby
+UKPlanningScraper::Authority.named('Merton').tags
+# => ["london", "outerlondon", "southlondon", "england", "northgate", "londonboroughs"]
+
+UKPlanningScraper::Authority.not_tagged('london')
+# => [...]
+
+UKPlanningScraper::Authority.named('Islington').tagged?('southlondon')
+# => false
+```
+
+### List all authorities
+
+```ruby
+UKPlanningScraper::Authority.all.each { |a| puts a.name }
+```
+
+### List all tags
+
+```ruby
+pp UKPlanningScraper::Authority.tags
+```
+## Add your favourite local planning authorities
+
+The list of authorities is in a CSV file in `/lib/uk_planning_scraper`:
+
+https://github.com/adrianshort/uk_planning_scraper/blob/master/lib/uk_planning_scraper/authorities.csv
+
+The easiest way to add to or edit this list is to edit within GitHub (use the pencil icon) and create a new pull request for your changes. If accepted, your changes will be available to everyone with the next version of the gem.
+
+The file format is one line per authority, with comma-separated:
+
+- Name (omit "the", "council", "borough of", "city of", etc. and write "and" not "&", except for `City of London` which is a special case)
+- URL of the search form (use the advanced search URL if there is one)
+- Tags (use as many comma-separated tags as is reasonable, lowercase and all one word.)
+
+Currently only Idox and Northgate scrapers work but feel free to add authorities that use other systems, along with appropriate system tags like `ocellaweb` and `agileplanning`. This gem selects the appropriate scraper by examining the URL not by looking at the tags, so it doesn't matter what you use as long as it's consistent with others.
+
+Please check the tag list before you change anything:
+
+```ruby
+pp UKPlanningScraper::Authority.tags
 ```
 
 ## Development
