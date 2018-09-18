@@ -34,3 +34,7 @@ Islington,http://planning.islington.gov.uk/northgate/planningexplorer/generalsea
 Merton,http://planning.merton.gov.uk/Northgate/PlanningExplorerAA/GeneralSearch.aspx,london,outerlondon,southlondon,england,northgate,londonboroughs
 Wandsworth,https://planning1.wandsworth.gov.uk/Northgate/PlanningExplorer/GeneralSearch.aspx,london,innerlondon,southlondon,england,northgate,londonboroughs
 Epsom and Ewell,http://eplanning.epsom-ewell.gov.uk/online-applications/search.do?action=advanced,surrey,england,idox
+London Legacy Development Corporation,http://planningregister.londonlegacy.co.uk/swift/apas/run/wphappcriteria.display,london,agileplanning,developmentcorporations
+Old Oak and Park Royal Development Corporation,http://planningregister.opdc.london.gov.uk/swift/apas/run/wphappcriteria.display,london,agileplanning,developmentcorporations
+Havering,http://development.havering.gov.uk/OcellaWeb/planningSearch,london,ocellaweb,londonboroughs,eastlondon,outerlondon
+Hillingdon,http://planning.hillingdon.gov.uk/OcellaWeb/planningSearch,london,ocellaweb,londonboroughs,westlondon,outerlondon
