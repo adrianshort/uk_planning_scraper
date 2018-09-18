@@ -1,6 +1,6 @@
 # UK Planning Scraper
 
-**PRE-ALPHA: Only works with some Idox sites and spews a lot of stuff to STDOUT. Not for production use.**
+**PRE-ALPHA: Only works with Idox and Northgate sites and spews a lot of stuff to STDOUT. Not for production use.**
 
 This gem scrapes planning applications data from UK council/local planning authority websites, eg Westminster City Council. Data is returned as an array of hashes, one hash for each planning application.
 
@@ -20,7 +20,7 @@ gem 'uk_planning_scraper', :git => 'https://github.com/adrianshort/uk_planning_s
 
 And then execute:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
