@@ -33,9 +33,17 @@ Tower Hamlets,https://development.towerhamlets.gov.uk/online-applications/search
 Waltham Forest,http://planning.walthamforest.gov.uk/application-search?civica.query.ReceivedDateFrom=20%2F05%2F2018&civica.query.ReceivedDateTo=26%2F05%2F2018,unknownsystem,london,londonboroughs
 Wandsworth,https://planning1.wandsworth.gov.uk/Northgate/PlanningExplorer/GeneralSearch.aspx,london,innerlondon,southlondon,england,londonboroughs
 Westminster,http://idoxpa.westminster.gov.uk/online-applications/search.do?action=advanced,londonboroughs,london
+Bolton,https://www.planningpa.bolton.gov.uk/online-applications-17/search.do?action=advanced,idox,england,greatermanchester
+Bury,https://planning.bury.gov.uk/online-applications/search.do??action=advanced,idox,england,greatermanchester
+Manchester,https://pa.manchester.gov.uk/online-applications/search.do?action=advanced,idox,england,greatermanchester
+Oldham,http://planningpa.oldham.gov.uk/online-applications/search.do?action=advanced,idox,england,greatermanchester
+Rochdale,http://publicaccess.rochdale.gov.uk/online-applications/search.do?action=advanced,idox,england,greatermanchester
+Salford,http://publicaccess.salford.gov.uk/publicaccess/search.do?action=advanced,idox,england,greatermanchester
+Stockport,http://planning.stockport.gov.uk/PlanningData-live/search.do?action=advanced,idox,england,greatermanchester
+Tameside,https://public.tameside.gov.uk/plan/f422planapp.asp,unknownsystem,england,greatermanchester
+Trafford,https://publicaccess.trafford.gov.uk/online-applications/search.do?action=advanced,idox,england,greatermanchester
+Wigan,https://apps.wigan.gov.uk/planapps/PlanAppsAppSearch.asp,unknownsystem,england,greatermanchester
 Bristol,https://planningonline.bristol.gov.uk/online-applications/search.do?action=advanced
-Salford,http://publicaccess.salford.gov.uk/publicaccess/search.do?action=advanced
-Manchester,https://pa.manchester.gov.uk/online-applications/search.do?action=advanced
 Leeds,https://publicaccess.leeds.gov.uk/online-applications/search.do?action=advanced
 Glasgow,https://publicaccess.glasgow.gov.uk/online-applications/search.do?action=advanced,scotland
 Sheffield,https://planningapps.sheffield.gov.uk/online-applications/search.do?action=advanced
