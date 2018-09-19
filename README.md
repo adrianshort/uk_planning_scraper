@@ -2,7 +2,7 @@
 
 **PRE-ALPHA: Only works with Idox and Northgate sites and spews a lot of stuff to STDOUT. Not for production use.**
 
-This gem scrapes planning applications data from UK council/local planning authority websites, eg Westminster City Council. Data is returned as an array of hashes, one hash for each planning application.
+This gem scrapes planning applications data from UK local planning authority websites, eg Westminster City Council. Data is returned as an array of hashes, one hash for each planning application.
 
 This scraper gem doesn't use a database. Storing the output is up to you. It's just a convenient way to get the data.
 
@@ -86,7 +86,6 @@ params = {
 }
 
 apps = UKPlanningScraper::Authority.named('Camden').scrape(params)
-
 ```
 
 ### Save to a SQLite database
@@ -119,16 +118,34 @@ We've got tags for areas:
 - wales
 
 and software systems:
+
 - idox
 - northgate
+- ocellaweb
+- agileplanning
+- unknownsystem -- use when you can't identify the system
 
 and whatever you'd like to add that would be useful to others.
+
+### WTF is up with London?
+
+London has got 32 London Boroughs, tagged `londonboroughs`.
+
+It has 33 councils: the London Boroughs plus the City of London (named `City of London`).
+
+And it's got 35 local planning authorities: the 33 councils plus the two `developmentcorporations`, named `London Legacy Development Corporation` and `Old Oak and Park Royal Development Corporation`.
+
+The tag `london` covers all (and only) the 35 local planning authorities in London. If you want to scope to all planning applications in London, use:
+
+```ruby
+auths = UKPlanningScraper::Authority.tagged('london')
+```
 
 ### More fun with Authority tags
 
 ```ruby
 UKPlanningScraper::Authority.named('Merton').tags
-# => ["london", "outerlondon", "southlondon", "england", "northgate", "londonboroughs"]
+# => ["england", "london", "londonboroughs", "northgate", "outerlondon", "southlondon"]
 
 UKPlanningScraper::Authority.not_tagged('london')
 # => [...]
@@ -162,7 +179,7 @@ The file format is one line per authority, with comma-separated:
 - URL of the search form (use the advanced search URL if there is one)
 - Tags (use as many comma-separated tags as is reasonable, lowercase and all one word.)
 
-Currently only Idox and Northgate scrapers work but feel free to add authorities that use other systems, along with appropriate system tags like `ocellaweb` and `agileplanning`. This gem selects the appropriate scraper by examining the URL not by looking at the tags, so it doesn't matter what you use as long as it's consistent with others.
+Currently only `idox` and `northgate` scrapers work but feel free to add authorities that use other systems, along with appropriate system tags like `ocellaweb` and `agileplanning`. Use `unknownsystem` if you can't identify the system. This gem selects the appropriate scraper by examining the URL not by looking at the tags, so it doesn't matter what you use as long as it's consistent with others.
 
 Please check the tag list before you change anything:
 
