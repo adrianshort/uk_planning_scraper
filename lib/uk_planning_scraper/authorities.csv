@@ -21,17 +21,17 @@ Kensington and Chelsea,https://www.rbkc.gov.uk/planning/searches/default.aspx?ad
 Kingston upon Thames,https://maps.kingston.gov.uk/propertyServices/planning/Search,unknownsystem,london,londonboroughs
 Lambeth,https://planning.lambeth.gov.uk/online-applications/search.do?action=advanced,londonboroughs,london
 Lewisham,http://planning.lewisham.gov.uk/online-applications/search.do?action=advanced,londonboroughs,london
-London Legacy Development Corporation,http://planningregister.londonlegacy.co.uk/swift/apas/run/wphappcriteria.display,london,agileplanning,developmentcorporations
+London Legacy Development Corporation,http://planningregister.londonlegacy.co.uk/swift/apas/run/wphappcriteria.display,london,agileplanning,developmentcorporations,londondevelopmentcorporations
 Merton,http://planning.merton.gov.uk/Northgate/PlanningExplorerAA/GeneralSearch.aspx,london,outerlondon,southlondon,england,northgate,londonboroughs
 Newham,https://pa.newham.gov.uk/online-applications/search.do?action=advanced,londonboroughs,london,idox,londonboroughs
-Old Oak and Park Royal Development Corporation,http://planningregister.opdc.london.gov.uk/swift/apas/run/wphappcriteria.display,london,agileplanning,developmentcorporations
+Old Oak and Park Royal Development Corporation,http://planningregister.opdc.london.gov.uk/swift/apas/run/wphappcriteria.display,london,agileplanning,developmentcorporations,londondevelopmentcorporations
 Redbridge,http://planning.redbridge.gov.uk/swiftlg/apas/run/wphappcriteria.display,agileplanning,london,londonboroughs
 Richmond,http://www2.richmond.gov.uk/PlanData2/Planning_Report.aspx,unknownsystem,london,londonboroughs
 Southwark,https://planning.southwark.gov.uk/online-applications/search.do?action=advanced,londonboroughs,london
-Sutton,https://planningregister.sutton.gov.uk/online-applications/search.do?action=advanced,london,outerlondon,southlondon,england
+Sutton,https://planningregister.sutton.gov.uk/online-applications/search.do?action=advanced,london,londonboroughs,outerlondon,southlondon,england
 Tower Hamlets,https://development.towerhamlets.gov.uk/online-applications/search.do?action=advanced,londonboroughs,london
 Waltham Forest,http://planning.walthamforest.gov.uk/application-search?civica.query.ReceivedDateFrom=20%2F05%2F2018&civica.query.ReceivedDateTo=26%2F05%2F2018,unknownsystem,london,londonboroughs
-Wandsworth,https://planning1.wandsworth.gov.uk/Northgate/PlanningExplorer/GeneralSearch.aspx,london,innerlondon,southlondon,englan
+Wandsworth,https://planning1.wandsworth.gov.uk/Northgate/PlanningExplorer/GeneralSearch.aspx,london,innerlondon,southlondon,england,londonboroughs
 Westminster,http://idoxpa.westminster.gov.uk/online-applications/search.do?action=advanced,londonboroughs,london
 Bristol,https://planningonline.bristol.gov.uk/online-applications/search.do?action=advanced
 Salford,http://publicaccess.salford.gov.uk/publicaccess/search.do?action=advanced

@@ -129,16 +129,21 @@ and whatever you'd like to add that would be useful to others.
 
 ### WTF is up with London?
 
-London has got 32 London Boroughs, tagged `londonboroughs`.
+London has got 32 London Boroughs, tagged `londonboroughs`. These are the councils under the authority of the Mayor of London and the Greater London Authority.
 
-It has 33 councils: the London Boroughs plus the City of London (named `City of London`).
+It has 33 councils: the London Boroughs plus the City of London (named `City of London`). We don't currently have a tag for this, but if you want to add `londoncouncils` please go ahead.
 
-And it's got 35 local planning authorities: the 33 councils plus the two `developmentcorporations`, named `London Legacy Development Corporation` and `Old Oak and Park Royal Development Corporation`.
-
-The tag `london` covers all (and only) the 35 local planning authorities in London. If you want to scope to all planning applications in London, use:
+And it's got 35 local planning authorities: the 33 councils plus the two `londondevelopmentcorporations`, named `London Legacy Development Corporation` and `Old Oak and Park Royal Development Corporation`. The tag `london` covers all (and only) the 35 local planning authorities in London.
 
 ```ruby
-auths = UKPlanningScraper::Authority.tagged('london')
+UKPlanningScraper::Authority.tagged('londonboroughs').size
+ => 32
+ 
+UKPlanningScraper::Authority.tagged('londondevelopmentcorporations').size
+ => 2
+
+UKPlanningScraper::Authority.tagged('london').size
+ => 35
 ```
 
 ### More fun with Authority tags
