@@ -97,7 +97,7 @@ require 'scraperwiki' # Must be installed, of course
 ScraperWiki.save_sqlite([:authority_name, :council_reference], apps)
 ```
 
-That `apps` param can be a hash or an array of hashes, which is what gets returned by our `search()`.
+That `apps` param can be a hash or an array of hashes, which is what gets returned by our `Authority.scrape`.
 
 ### Find authorities by tag
 
@@ -114,6 +114,7 @@ We've got tags for areas:
 - outerlondon
 - northlondon
 - southlondon
+- greatermanchester
 - surrey
 - wales
 
