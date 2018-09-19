@@ -72,8 +72,9 @@ module UKPlanningScraper
     end
     
     def self.named(name)
-      @@authorities.each { |a| return a if name == a.name }
-      nil
+      authority = @@authorities.find { |a| name == a.name }
+      raise AuthorityNotFound if authority.nil?
+      authority 
     end
 
     # Tagged x
@@ -99,7 +100,7 @@ module UKPlanningScraper
 
     def self.load
       # Don't run this method more than once
-      return unless @@authorities.empty? 
+      return unless @@authorities.empty?
       # FIXME hardcoded file path
       CSV.foreach(File.join(File.dirname(__dir__), 'uk_planning_scraper', 'authorities.csv')) do |line|
         @@authorities << Authority.new(
