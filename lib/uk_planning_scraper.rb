@@ -7,4 +7,7 @@ require 'logger'
 module UKPlanningScraper
   class SystemNotSupportedError < StandardError
   end
+  
+  class AuthorityNotFound < StandardError
+  end
 end
