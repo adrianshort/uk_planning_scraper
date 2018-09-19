@@ -129,11 +129,11 @@ module UKPlanningScraper
             when 'Planning Portal Reference'
               app[:alternative_reference] = value
             when 'Application Received'
-              app[:date_received] = Date.parse(value) if value != ''
+              app[:date_received] = Date.parse(value) if value.match(/\d/)
             when 'Application Registered'
-              app[:date_received] = Date.parse(value) if value != ''
+              app[:date_received] = Date.parse(value) if value.match(/\d/)
             when 'Application Validated'
-              app[:date_validated] = Date.parse(value) if value != ''
+              app[:date_validated] = Date.parse(value) if value.match(/\d/)
             when 'Address'
               app[:address] = value
             when 'Proposal'
@@ -143,7 +143,7 @@ module UKPlanningScraper
             when 'Decision'
               app[:decision] = value
             when 'Decision Issued Date'
-              app[:date_decision] = Date.parse(value) if value != ''
+              app[:date_decision] = Date.parse(value) if value.match(/\d/)
             when 'Appeal Status'
               app[:appeal_status] = value
             when 'Appeal Decision'
