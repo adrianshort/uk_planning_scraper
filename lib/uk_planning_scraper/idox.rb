@@ -36,7 +36,12 @@ module UKPlanningScraper
     
     # Some councils don't have the applicant name on their form, eg Bexley
     form.send(:"searchCriteria\.applicantName", params[:applicant_name]) if form.has_field? 'searchCriteria.applicantName'
-    form.send(:"searchCriteria\.caseType", params[:application_type])
+    
+    form.send(:"searchCriteria\.caseType", params[:application_type]) if form.has_field? 'searchCriteria.caseType'
+    # Some Idox sites (eg Bolton) call this 'searchCriteria.developmentType'
+    form.send(:"searchCriteria\.developmentType", params[:application_type]) if form.has_field? 'searchCriteria.developmentType'
+    
+    
     page = form.submit
 
     loop do
