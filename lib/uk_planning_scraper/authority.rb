@@ -40,9 +40,9 @@ module UKPlanningScraper
       
       # Select which scraper to use based on the URL
       if @url.match(/search\.do\?action=advanced/i)
-        apps = UKPlanningScraper.scrape_idox(@url, params, options)
+        apps = scrape_idox(params, options)
       elsif @url.match(/generalsearch\.aspx/i)
-        apps = UKPlanningScraper.scrape_northgate(@url, params, options)
+        apps = scrape_northgate(params, options)
       else
         # Not supported
         raise SystemNotSupportedError.new("Planning system not supported for #{@name} at URL: #{@url}")
