@@ -12,10 +12,15 @@ module UKPlanningScraper
     puts "Getting: #{search_url}"
     page = agent.get(search_url) # load the search form page
 
-    
-    # Fill out and submit search form
-    form = page.form('searchCriteriaForm')
+    # Check that the search form is actually present.
+    # When Idox has an internal error it returns an error page with HTTP 200.
+    unless form = page.form('searchCriteriaForm')
+      puts "Error: Search form page failed to load due to Idox internal error."
+      return []
+    end
     # form.action = form.action + '&searchCriteria.resultsPerPage=100'
+
+    # Fill out and submit search form
 
     # Some councils don't have the received from/to dates on their form, eg Newham
     form.send(:"date(applicationReceivedStart)", params[:received_from].strftime("%d/%m/%Y")) if params[:received_from]
