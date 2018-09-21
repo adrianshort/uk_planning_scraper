@@ -118,13 +118,13 @@ We've got tags for areas:
 - surrey
 - wales
 
-and software systems:
+We also automatically add tags for software systems:
 
 - idox
 - northgate
 - ocellaweb
 - agileplanning
-- unknownsystem -- use when you can't identify the system
+- unknownsystem -- for when we can't identify the system
 
 and whatever you'd like to add that would be useful to others.
 
@@ -185,7 +185,7 @@ The file format is one line per authority, with comma-separated:
 - URL of the search form (use the advanced search URL if there is one)
 - Tags (use as many comma-separated tags as is reasonable, lowercase and all one word.)
 
-Currently only `idox` and `northgate` scrapers work but feel free to add authorities that use other systems, along with appropriate system tags like `ocellaweb` and `agileplanning`. Use `unknownsystem` if you can't identify the system. This gem selects the appropriate scraper by examining the URL not by looking at the tags, so it doesn't matter what you use as long as it's consistent with others.
+There's no need to manually add tags to the `authorities.csv` file for the software systems like `idox`, `northgate` etc as these are added automatically.
 
 Please check the tag list before you change anything:
 
