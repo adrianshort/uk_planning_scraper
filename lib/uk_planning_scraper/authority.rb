@@ -38,13 +38,13 @@ module UKPlanningScraper
         params[:decided_from] = Date.today - (params[:decided_days] - 1)
       end
       
-      # Select which scraper to use based on the URL
-      if @url.match(/search\.do\?action=advanced/i)
+      # Select which scraper to use
+      case system
+      when 'idox'
         apps = scrape_idox(params, options)
-      elsif @url.match(/generalsearch\.aspx/i)
+      when 'northgate'
         apps = scrape_northgate(params, options)
       else
-        # Not supported
         raise SystemNotSupportedError.new("Planning system not supported for #{@name} at URL: #{@url}")
       end
       
@@ -58,6 +58,20 @@ module UKPlanningScraper
     
     def tagged?(tag)
       @tags.include?(tag)
+    end
+    
+    def system
+      if @url.match(/search\.do\?action=advanced/i)
+        s = 'idox'
+      elsif @url.match(/generalsearch\.aspx/i)
+        s = 'northgate'
+      elsif @url.match(/ocellaweb/i)
+        s = 'ocellaweb'
+      elsif @url.match(/\/apas\//)
+        s = 'agileplanning'
+      else
+        s = 'unknownsystem'
+      end
     end
 
     def self.all
@@ -103,10 +117,13 @@ module UKPlanningScraper
       return unless @@authorities.empty?
       # FIXME hardcoded file path
       CSV.foreach(File.join(File.dirname(__dir__), 'uk_planning_scraper', 'authorities.csv')) do |line|
-        @@authorities << Authority.new(
+        auth = Authority.new(
           line[0].strip,
           line[1].strip,
-          line[2..-1].map { |e| e.strip }.sort)
+          line[2..-1].map { |e| e.strip })
+        auth.tags << auth.system unless auth.tagged?(auth.system)
+        auth.tags.sort!
+        @@authorities << auth
       end
     end
   end
