@@ -45,7 +45,7 @@ module UKPlanningScraper
       when 'northgate'
         apps = scrape_northgate(params, options)
       else
-        raise SystemNotSupportedError.new("Planning system not supported for #{@name} at URL: #{@url}")
+        raise SystemNotSupported.new("Planning system not supported for #{@name} at URL: #{@url}")
       end
       
       # Post processing

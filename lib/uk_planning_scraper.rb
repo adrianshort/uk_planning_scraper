@@ -5,7 +5,7 @@ require 'uk_planning_scraper/northgate'
 require 'logger'
 
 module UKPlanningScraper
-  class SystemNotSupportedError < StandardError
+  class SystemNotSupported < StandardError
   end
   
   class AuthorityNotFound < StandardError
