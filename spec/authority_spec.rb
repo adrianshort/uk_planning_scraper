@@ -39,4 +39,19 @@ describe UKPlanningScraper::Authority do
     
   end
   
+  describe '#tagged' do
+    let (:tagged_london) { described_class.tagged('london') }
+    
+    it 'returns all London authorities' do
+      expect(tagged_london.count).to eq(35)
+    end
+    
+    let (:tagged_londonboroughs) { described_class.tagged('londonboroughs') }
+    
+    it 'returns all London boroughs' do
+      expect(tagged_londonboroughs.count).to eq(32)
+    end
+    
+  end
+  
 end
