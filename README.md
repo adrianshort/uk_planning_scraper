@@ -138,13 +138,13 @@ And it's got 35 local planning authorities: the 33 councils plus the two `london
 
 ```ruby
 UKPlanningScraper::Authority.tagged('londonboroughs').size
- => 32
+ # => 32
  
 UKPlanningScraper::Authority.tagged('londondevelopmentcorporations').size
- => 2
+ # => 2
 
 UKPlanningScraper::Authority.tagged('london').size
- => 35
+ # => 35
 ```
 
 ### More fun with Authority tags
