@@ -45,8 +45,9 @@ module UKPlanningScraper
       form.send(:"searchCriteria\.applicantName", params[:applicant_name]) if form.has_field? 'searchCriteria.applicantName'
       
       form.send(:"searchCriteria\.caseType", params[:application_type]) if form.has_field? 'searchCriteria.caseType'
-      # Some Idox sites (eg Bolton) call this 'searchCriteria.developmentType'
-      form.send(:"searchCriteria\.developmentType", params[:application_type]) if form.has_field? 'searchCriteria.developmentType'
+      
+      # Only some Idox sites (eg Bolton) have a 'searchCriteria.developmentType' parameter
+      form.send(:"searchCriteria\.developmentType", params[:development_type]) if form.has_field? 'searchCriteria.developmentType'
       
       
       page = form.submit
