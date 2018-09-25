@@ -30,14 +30,16 @@ module UKPlanningScraper
         date(applicationReceivedEnd)
       }.each { |f| form.add_field!(f) unless form.has_field?(f) }
 
-      form.send(:"date(applicationReceivedStart)", params[:received_from].strftime("%d/%m/%Y")) if params[:received_from]
-      form.send(:"date(applicationReceivedEnd)", params[:received_to].strftime("%d/%m/%Y")) if params[:received_to]
+      date_format = "%d/%m/%Y"
+      
+      form.send(:"date(applicationReceivedStart)", params[:received_from].strftime(date_format)) if params[:received_from]
+      form.send(:"date(applicationReceivedEnd)", params[:received_to].strftime(date_format)) if params[:received_to]
 
-      form.send(:"date(applicationValidatedStart)", params[:validated_from].strftime("%d/%m/%Y")) if params[:validated_from]
-      form.send(:"date(applicationValidatedEnd)", params[:validated_to].strftime("%d/%m/%Y")) if params[:validated_to]
+      form.send(:"date(applicationValidatedStart)", params[:validated_from].strftime(date_format)) if params[:validated_from]
+      form.send(:"date(applicationValidatedEnd)", params[:validated_to].strftime(date_format)) if params[:validated_to]
 
-      form.send(:"date(applicationDecisionStart)", params[:decided_from].strftime("%d/%m/%Y")) if params[:decided_from]
-      form.send(:"date(applicationDecisionEnd)", params[:decided_to].strftime("%d/%m/%Y")) if params[:decided_to]
+      form.send(:"date(applicationDecisionStart)", params[:decided_from].strftime(date_format)) if params[:decided_from]
+      form.send(:"date(applicationDecisionEnd)", params[:decided_to].strftime(date_format)) if params[:decided_to]
 
       form.send(:"searchCriteria\.description", params[:keywords])
       
