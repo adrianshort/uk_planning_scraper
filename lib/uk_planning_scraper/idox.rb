@@ -51,6 +51,10 @@ module UKPlanningScraper
       
       page = form.submit
 
+      if page.search('.errors').inner_text.match(/Too many results found/i)
+        raise TooManySearchResults.new("Scrape in smaller chunks. Use shorter date ranges and/or more search parameters.")
+      end
+      
       loop do
         # Parse search results
         items = page.search('li.searchresult')

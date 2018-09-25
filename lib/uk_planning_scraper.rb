@@ -10,4 +10,7 @@ module UKPlanningScraper
   
   class AuthorityNotFound < StandardError
   end
+  
+  class TooManySearchResults < StandardError
+  end
 end
