@@ -19,8 +19,8 @@ Hounslow,http://planning.hounslow.gov.uk/planning_search.aspx,unknownsystem,lond
 Islington,http://planning.islington.gov.uk/northgate/planningexplorer/generalsearch.aspx,londonboroughs,london
 Kensington and Chelsea,https://www.rbkc.gov.uk/planning/searches/default.aspx?adv=1#advancedSearch,unknownsystem,london,londonboroughs
 Kingston upon Thames,https://maps.kingston.gov.uk/propertyServices/planning/Search,unknownsystem,london,londonboroughs
-Lambeth,https://planning.lambeth.gov.uk/online-applications/search.do?action=advanced,londonboroughs,london
-Lewisham,http://planning.lewisham.gov.uk/online-applications/search.do?action=advanced,londonboroughs,london
+Lambeth,https://planning.lambeth.gov.uk/online-applications/search.do?action=advanced,londonboroughs,london,southlondon
+Lewisham,http://planning.lewisham.gov.uk/online-applications/search.do?action=advanced,londonboroughs,london,southlondon
 London Legacy Development Corporation,http://planningregister.londonlegacy.co.uk/swift/apas/run/wphappcriteria.display,london,developmentcorporations,londondevelopmentcorporations
 Merton,http://planning.merton.gov.uk/Northgate/PlanningExplorerAA/GeneralSearch.aspx,london,outerlondon,southlondon,england,londonboroughs
 Newham,https://pa.newham.gov.uk/online-applications/search.do?action=advanced,londonboroughs,london,londonboroughs
