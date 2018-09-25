@@ -74,11 +74,11 @@ module UKPlanningScraper
               data[:council_reference] = matches[1]
             end
 
-            if matches = bit.match(/(Received|Registered):\s+(.+)/)
+            if matches = bit.match(/(Received|Registered):\s+.*(\d{2}\s\w{3}\s\d{2}\d{2}?)/)
               data[:date_received] = Date.parse(matches[2])
             end
             
-            if matches = bit.match(/Validated:\s+(.+)/)
+            if matches = bit.match(/Validated:\s+.*(\d{2}\s\w{3}\s\d{2}\d{2}?)/)
               data[:date_validated] = Date.parse(matches[1])
             end
 
