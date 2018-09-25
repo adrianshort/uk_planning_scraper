@@ -24,7 +24,12 @@ module UKPlanningScraper
 
       # Fill out and submit search form
 
-      # Some councils don't have the received from/to dates on their form, eg Newham
+      # Add expected fields to form if they're not already present so that searches using these terms work
+      %w{
+        date(applicationReceivedStart)
+        date(applicationReceivedEnd)
+      }.each { |f| form.add_field!(f) unless form.has_field?(f) }
+
       form.send(:"date(applicationReceivedStart)", params[:received_from].strftime("%d/%m/%Y")) if params[:received_from]
       form.send(:"date(applicationReceivedEnd)", params[:received_to].strftime("%d/%m/%Y")) if params[:received_to]
 
