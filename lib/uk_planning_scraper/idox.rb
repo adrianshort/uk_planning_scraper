@@ -48,8 +48,7 @@ module UKPlanningScraper
       
       # Only some Idox sites (eg Bolton) have a 'searchCriteria.developmentType' parameter
       form.send(:"searchCriteria\.developmentType", params[:development_type]) if form.has_field? 'searchCriteria.developmentType'
-      
-      
+
       page = form.submit
 
       if page.search('.errors').inner_text.match(/Too many results found/i)
@@ -63,7 +62,7 @@ module UKPlanningScraper
         puts "Found #{items.size} apps on this page."
 
         items.each do |app|
-          data = {}
+          data = Application.new
 
           # Parse info line
           info_line = app.at("p.metaInfo").inner_text.strip
@@ -71,32 +70,30 @@ module UKPlanningScraper
           
           bits.each do |bit|
             if matches = bit.match(/Ref\. No:\s+(.+)/)
-              data[:council_reference] = matches[1]
+              data.council_reference = matches[1]
             end
 
             if matches = bit.match(/(Received|Registered):\s+(.+)/)
-              data[:date_received] = Date.parse(matches[2])
+              data.date_received = Date.parse(matches[2])
             end
             
             if matches = bit.match(/Validated:\s+(.+)/)
-              data[:date_validated] = Date.parse(matches[1])
+              data.date_validated = Date.parse(matches[1])
             end
 
             if matches = bit.match(/Status:\s+(.+)/)
-              data[:status] = matches[1]
+              data.status = matches[1]
             end
           end
 
-          data.merge!({
-            scraped_at: Time.now,
-            info_url: base_url + app.at('a')['href'],
-            address: app.at('p.address').inner_text.strip,
-            description: app.at('a').inner_text.strip,
-          })
+          data.scraped_at = Time.now
+          data.info_url = base_url + app.at('a')['href']
+          data.address = app.at('p.address').inner_text.strip
+          data.description = app.at('a').inner_text.strip
           
           apps << data
         end
-
+        
         # Get the Next button from the pager, if there is one
         if next_button = page.at('a.next')
           next_url = base_url + next_button[:href]# + '&searchCriteria.resultsPerPage=100'
@@ -111,28 +108,27 @@ module UKPlanningScraper
       # Scrape the summary tab for each app
       apps.each_with_index do |app, i|
         sleep options[:delay]
-        puts "#{i + 1} of #{apps.size}: #{app[:info_url]}"
-        res = agent.get(app[:info_url])
+        puts "#{i + 1} of #{apps.size}: #{app.info_url}"
+        res = agent.get(app.info_url)
         
         if res.code == '200' # That's a String not an Integer, ffs
           # Parse the summary tab for this app
 
-          app[:scraped_at] = Time.now
+          app.scraped_at = Time.now
 
           # The Documents tab doesn't show if there are no documents (we get li.nodocuments instead)
           # Bradford has #tab_documents but without the document count on it
-          app[:documents_count] = 0
-          app[:documents_url] = nil
+          app.documents_count = 0
 
           if documents_link = res.at('.associateddocument a')
             if documents_link.inner_text.match(/\d+/)
-              app[:documents_count] = documents_link.inner_text.match(/\d+/)[0].to_i
-              app[:documents_url] = base_url + documents_link[:href]
+              app.documents_count = documents_link.inner_text.match(/\d+/)[0].to_i
+              app.documents_url = base_url + documents_link[:href]
             end
           elsif documents_link = res.at('#tab_documents')
             if documents_link.inner_text.match(/\d+/)
-              app[:documents_count] = documents_link.inner_text.match(/\d+/)[0].to_i
-              app[:documents_url] = base_url + documents_link[:href]
+              app.documents_count = documents_link.inner_text.match(/\d+/)[0].to_i
+              app.documents_url = base_url + documents_link[:href]
             end
           end
           
@@ -145,31 +141,31 @@ module UKPlanningScraper
             
             case key
               when 'Reference'
-                app[:council_reference] = value
+                app.council_reference = value
               when 'Alternative Reference'
-                app[:alternative_reference] = value
+                app.alternative_reference = value unless value.empty?
               when 'Planning Portal Reference'
-                app[:alternative_reference] = value
+                app.alternative_reference = value unless value.empty?
               when 'Application Received'
-                app[:date_received] = Date.parse(value) if value.match(/\d/)
+                app.date_received = Date.parse(value) if value.match(/\d/)
               when 'Application Registered'
-                app[:date_received] = Date.parse(value) if value.match(/\d/)
+                app.date_received = Date.parse(value) if value.match(/\d/)
               when 'Application Validated'
-                app[:date_validated] = Date.parse(value) if value.match(/\d/)
+                app.date_validated = Date.parse(value) if value.match(/\d/)
               when 'Address'
-                app[:address] = value
+                app.address = value unless value.empty?
               when 'Proposal'
-                app[:description] = value
+                app.description = value unless value.empty?
               when 'Status'
-                app[:status] = value
+                app.status = value unless value.empty?
               when 'Decision'
-                app[:decision] = value
+                app.decision = value unless value.empty?
               when 'Decision Issued Date'
-                app[:date_decision] = Date.parse(value) if value.match(/\d/)
+                app.date_decision = Date.parse(value) if value.match(/\d/)
               when 'Appeal Status'
-                app[:appeal_status] = value
+                app.appeal_status = value unless value.empty?
               when 'Appeal Decision'
-                app[:appeal_decision] = value
+                app.appeal_decision = value unless value.empty?
               else
                 puts "Error: key '#{key}' not found"
             end # case

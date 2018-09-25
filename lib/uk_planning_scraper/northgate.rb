@@ -50,9 +50,6 @@ module UKPlanningScraper
         form_vars['dateEnd'] = params[:decided_to].to_s if params[:decided_to] # YYYY-MM-DD
       end
 
-
-      # form_vars.merge!({ 'cboStatusCode' => ENV['MORPH_STATUS']}) if ENV['MORPH_STATUS']
-
       logger.info "Form variables: #{form_vars.to_s}"
 
       headers = {
@@ -110,29 +107,19 @@ module UKPlanningScraper
       rows.each do |row|
         if row.at("td") # skip header row which only has th's
           cells = row.search("td")
-          ref = cells[0].inner_text.strip
 
-          app = {
-            scraped_at: Time.now,
-            # date_scraped: Date.today # FIXME - Planning Alerts compatibility?
-          }
-
-          app[:council_reference] = ref
-          app[:info_url] = URI::encode(generic_url + cells[0].at('a')[:href].strip)
-          app[:info_url].gsub!(/%0./, '') # FIXME. Strip junk chars from URL - how can we prevent this?
-          app[:address] = cells[1].inner_text.strip
-          app[:description] = cells[2].inner_text.strip
-          app[:status] = cells[3].inner_text.strip
-          
+          app = Application.new
+          app.scraped_at = Time.now
+          app.council_reference = cells[0].inner_text.strip
+          app.info_url = URI::encode(generic_url + cells[0].at('a')[:href].strip)
+          app.info_url.gsub!(/%0./, '') # FIXME. Strip junk chars from URL - how can we prevent this?
+          app.address = cells[1].inner_text.strip
+          app.description = cells[2].inner_text.strip
+          app.status = cells[3].inner_text.strip
           raw_date_received = cells[4].inner_text.strip
-          
-          if raw_date_received != '--'
-            app[:date_received] = Date.parse(raw_date_received)
-          else
-            app[:date_received] = nil
-          end
-          
-          app[:decision] = cells[5].inner_text.strip if cells[5] # Some councils don't have this column, eg Hackney
+          app.date_received = Date.parse(raw_date_received) if raw_date_received != '--'
+          app.decision = cells[5].inner_text.strip if cells[5] # Some councils don't have this column, eg Hackney
+
           apps << app
         end
       end

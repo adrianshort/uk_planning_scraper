@@ -9,6 +9,7 @@ module UKPlanningScraper
       @name = name
       @url = url
       @tags = tags
+      @applications = [] # Application objects
     end
 
     def scrape(params, options = {})
@@ -41,19 +42,23 @@ module UKPlanningScraper
       # Select which scraper to use
       case system
       when 'idox'
-        apps = scrape_idox(params, options)
+        @applications = scrape_idox(params, options)
       when 'northgate'
-        apps = scrape_northgate(params, options)
+        @applications = scrape_northgate(params, options)
       else
         raise SystemNotSupported.new("Planning system not supported for #{@name} at URL: #{@url}")
       end
       
       # Post processing
-      apps.each do |app|
-        app[:authority_name] = @name
+      @applications.each do |app|
+        app.authority_name = @name
       end
-      
-      apps # Single point of successful exit
+
+      # Output as an array of hashes
+      output = []
+      # FIXME - silently ignores invalid apps. How should we handle them?
+      @applications.each { |app| output << app.to_hash if app.valid? }
+      output  # Single point of successful exit
     end
     
     def tagged?(tag)
