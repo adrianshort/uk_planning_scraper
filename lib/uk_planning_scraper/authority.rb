@@ -2,13 +2,13 @@ require 'csv'
 
 module UKPlanningScraper
   class Authority
-    attr_reader :name, :tags, :url
+    attr_reader :name, :url
     @@authorities = []
 
-    def initialize(name, url, tags)
-      @name = name
-      @url = url
-      @tags = tags
+    def initialize(name, url)
+      @name = name.strip
+      @url = url.strip
+      @tags = [] # Strings in arbitrary order
       @applications = [] # Application objects
     end
 
@@ -61,6 +61,21 @@ module UKPlanningScraper
       output  # Single point of successful exit
     end
     
+    def tags
+      @tags.sort
+    end
+    
+    # Add multiple tags to existing tags
+    def add_tags(tags)
+      tags.each { |t| add_tag(t) }
+    end
+    
+    # Add a single tag to existing tags
+    def add_tag(tag)
+      clean_tag = tag.strip.downcase.gsub(' ', '')
+      @tags << clean_tag unless tagged?(clean_tag) # prevent duplicates
+    end
+    
     def tagged?(tag)
       @tags.include?(tag)
     end
@@ -99,14 +114,14 @@ module UKPlanningScraper
     # Tagged x
     def self.tagged(tag)
       found = []
-      @@authorities.each { |a| found << a if a.tags.include?(tag) }
+      @@authorities.each { |a| found << a if a.tagged?(tag) }
       found
     end
 
     # Not tagged x
     def self.not_tagged(tag)
       found = []
-      @@authorities.each { |a| found << a unless a.tags.include?(tag) }
+      @@authorities.each { |a| found << a unless a.tagged?(tag) }
       found
     end
 
@@ -120,14 +135,10 @@ module UKPlanningScraper
     def self.load
       # Don't run this method more than once
       return unless @@authorities.empty?
-      # FIXME hardcoded file path
       CSV.foreach(File.join(File.dirname(__dir__), 'uk_planning_scraper', 'authorities.csv')) do |line|
-        auth = Authority.new(
-          line[0].strip,
-          line[1].strip,
-          line[2..-1].map { |e| e.strip })
-        auth.tags << auth.system unless auth.tagged?(auth.system)
-        auth.tags.sort!
+        auth = Authority.new(line[0], line[1])
+        auth.add_tags(line[2..-1])
+        auth.add_tag(auth.system)
         @@authorities << auth
       end
     end
