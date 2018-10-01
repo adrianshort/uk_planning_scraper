@@ -11,7 +11,7 @@ describe UKPlanningScraper::Authority do
 
       it 'returns apps' do
         apps = VCR.use_cassette("#{self.class.description}") {
-          scraper.scrape({ decided_days: 4 })
+          scraper.scrape({ decided_days: 4 }, { delay: 0 })
         }
         pp apps
 #        expect(authority).to be_a(UKPlanningScraper::Authority)
