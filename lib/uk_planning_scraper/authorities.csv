@@ -43,14 +43,24 @@ Stockport,http://planning.stockport.gov.uk/PlanningData-live/search.do?action=ad
 Tameside,https://public.tameside.gov.uk/plan/f422planapp.asp,unknownsystem,england,greatermanchester
 Trafford,https://publicaccess.trafford.gov.uk/online-applications/search.do?action=advanced,england,greatermanchester
 Wigan,https://apps.wigan.gov.uk/planapps/PlanAppsAppSearch.asp,unknownsystem,england,greatermanchester
-Bristol,https://planningonline.bristol.gov.uk/online-applications/search.do?action=advanced
-Leeds,https://publicaccess.leeds.gov.uk/online-applications/search.do?action=advanced
-Glasgow,https://publicaccess.glasgow.gov.uk/online-applications/search.do?action=advanced,scotland
-Sheffield,https://planningapps.sheffield.gov.uk/online-applications/search.do?action=advanced
-Bradford,https://planning.bradford.gov.uk/online-applications/search.do?action=advanced
-Edinburgh,https://citydev-portal.edinburgh.gov.uk/idoxpa-web/search.do?action=advanced,scotland
-Wakefield,https://planning.wakefield.gov.uk/online-applications/search.do?action=advanced
+Adur and Worthing,https://planning.adur-worthing.gov.uk/online-applications/,england
+Allerdale,https://planning.allerdale.gov.uk/portal/servlets/ApplicationSearchServlet,unknownsystem,england
+Amber Valley,https://www.ambervalley.gov.uk/environment-and-planning/planning/development-management/planning-applications/view-a-planning-application.aspx,unknownsystem,england
+Arun,https://www.arun.gov.uk/weekly-lists,unknownsystem,england
+Ashfield,https://www2.ashfield.gov.uk/cfusion/Planning/plan_findfile.cfm,unknownsystem,england
+Ashford,http://planning.ashford.gov.uk/planning/Default.aspx?new=true,unknownsystem,england
+Aylesbury Vale,https://publicaccess.aylesburyvaledc.gov.uk/online-applications//search.do?action=advanced&searchType=Application,england
+Babergh,https://planning.baberghmidsuffolk.gov.uk/online-applications/search.do?action=advanced,england
+Birmingham,https://eplanning.birmingham.gov.uk/Northgate/PlanningExplorer/GeneralSearch.aspx,england
+Bradford,https://planning.bradford.gov.uk/online-applications/search.do?action=advanced,england
+Brighton and Hove,https://planningapps.brighton-hove.gov.uk/online-applications/search.do?action=advanced,england
+Bristol,https://planningonline.bristol.gov.uk/online-applications/search.do?action=advanced,england
 Cardiff,https://planningonline.cardiff.gov.uk/online-applications/search.do?action=advanced,wales
-Birmingham,https://eplanning.birmingham.gov.uk/Northgate/PlanningExplorer/GeneralSearch.aspx
-Liverpool,http://northgate.liverpool.gov.uk/PlanningExplorer17/GeneralSearch.aspx
 Epsom and Ewell,http://eplanning.epsom-ewell.gov.uk/online-applications/search.do?action=advanced,surrey,england
+Leeds,https://publicaccess.leeds.gov.uk/online-applications/search.do?action=advanced,england
+Liverpool,http://northgate.liverpool.gov.uk/PlanningExplorer17/GeneralSearch.aspx,england
+Sheffield,https://planningapps.sheffield.gov.uk/online-applications/search.do?action=advanced,england
+Wakefield,https://planning.wakefield.gov.uk/online-applications/search.do?action=advanced,england
+South Downs,https://planningpublicaccess.southdowns.gov.uk/online-applications/search.do?action=advanced,nationalparks,england
+Edinburgh,https://citydev-portal.edinburgh.gov.uk/idoxpa-web/search.do?action=advanced,scotland
+Glasgow,https://publicaccess.glasgow.gov.uk/online-applications/search.do?action=advanced,scotland
