@@ -43,7 +43,7 @@ Stockport,http://planning.stockport.gov.uk/PlanningData-live/search.do?action=ad
 Tameside,https://public.tameside.gov.uk/plan/f422planapp.asp,unknownsystem,england,greatermanchester
 Trafford,https://publicaccess.trafford.gov.uk/online-applications/search.do?action=advanced,england,greatermanchester
 Wigan,https://apps.wigan.gov.uk/planapps/PlanAppsAppSearch.asp,unknownsystem,england,greatermanchester
-Adur and Worthing,https://planning.adur-worthing.gov.uk/online-applications/,england
+Adur and Worthing,https://planning.adur-worthing.gov.uk/online-applications/search.do?action=advanced,england
 Allerdale,https://planning.allerdale.gov.uk/portal/servlets/ApplicationSearchServlet,unknownsystem,england
 Amber Valley,https://www.ambervalley.gov.uk/environment-and-planning/planning/development-management/planning-applications/view-a-planning-application.aspx,unknownsystem,england
 Arun,https://www.arun.gov.uk/weekly-lists,unknownsystem,england
