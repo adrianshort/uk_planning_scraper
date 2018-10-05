@@ -71,8 +71,8 @@ module UKPlanningScraper
           '__EVENTVALIDATION' => doc.at('#__EVENTVALIDATION')['value']
          }
       else
-        logger.fatal "Bad response from search page. Response code: #{response.code.to_s}. Exiting."
-        exit 1
+        logger.fatal "Bad response from search page. Response code: #{response.code.to_s}."
+        raise RuntimeError.new("Northgate: Bad response from search page. Response code: #{response.code.to_s}.")
       end
 
       cookies = {}
@@ -88,16 +88,14 @@ module UKPlanningScraper
         # Follow the redirect manually
         # Set the page size (PS) to max so we don't have to page through search results
         logger.debug "Location: #{response2.headers['Location']}"
-        # exit
         results_url = URI::encode(base_url + response2.headers['Location'].gsub!('PS=10', 'PS=99999'))
-        
         logger.debug "GET: " + results_url
         response3 = HTTP.headers(headers).cookies(cookies).get(results_url)
         logger.debug "Response code: HTTP " + response3.code.to_s
         doc = Nokogiri::HTML(response3.to_s)
       else
-        logger.fatal "Didn't get redirected from search. Exiting."
-        exit 1
+        logger.error "Didn't get redirected from search."
+        raise RuntimeError.new("Northgate: didn't get redirected from search.")
       end
 
       rows = doc.search("table.display_table tr")
