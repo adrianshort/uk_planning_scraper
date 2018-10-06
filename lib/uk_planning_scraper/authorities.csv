@@ -59,7 +59,12 @@ Cardiff,https://planningonline.cardiff.gov.uk/online-applications/search.do?acti
 Cheshire West and Chester,https://pa.cheshirewestandchester.gov.uk/online-applications/search.do?action=advanced,chester,cheshire,england
 Epsom and Ewell,http://eplanning.epsom-ewell.gov.uk/online-applications/search.do?action=advanced,surrey,england
 Leeds,https://publicaccess.leeds.gov.uk/online-applications/search.do?action=advanced,england
-Liverpool,http://northgate.liverpool.gov.uk/PlanningExplorer17/GeneralSearch.aspx,england
+Liverpool,http://northgate.liverpool.gov.uk/PlanningExplorer17/GeneralSearch.aspx,england,merseyside,liverpoolcityregion
+St. Helens,https://publicaccess.sthelens.gov.uk/online-applications/search.do?action=advanced,england,merseyside,liverpoolcityregion
+Knowsley,https://planapp.knowsley.gov.uk/online-applications/search.do?action=advanced,england,merseyside,liverpoolcityregion
+Sefton,https://pa.sefton.gov.uk/online-applications/search.do?action=advanced,england,merseyside,liverpoolcityregion
+Wirral,https://planning.wirral.gov.uk/online-applications/search.do?action=advanced,england,merseyside,liverpoolcityregion
+Halton,https://webapp.halton.gov.uk/planningapps/,england,cheshire,liverpoolcityregion
 Sheffield,https://planningapps.sheffield.gov.uk/online-applications/search.do?action=advanced,england
 Wakefield,https://planning.wakefield.gov.uk/online-applications/search.do?action=advanced,england
 South Downs,https://planningpublicaccess.southdowns.gov.uk/online-applications/search.do?action=advanced,nationalparks,england
