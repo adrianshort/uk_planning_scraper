@@ -1,10 +1,10 @@
 Aberdeen,https://publicaccess.aberdeencity.gov.uk/online-applications/search.do?action=advanced,scotland
 Adur and Worthing,https://planning.adur-worthing.gov.uk/online-applications/search.do?action=advanced,england
-Allerdale,https://planning.allerdale.gov.uk/portal/servlets/ApplicationSearchServlet,unknownsystem,england
-Amber Valley,https://www.ambervalley.gov.uk/environment-and-planning/planning/development-management/planning-applications/view-a-planning-application.aspx,unknownsystem,england
-Arun,https://www.arun.gov.uk/weekly-lists,unknownsystem,england
-Ashfield,https://www2.ashfield.gov.uk/cfusion/Planning/plan_findfile.cfm,unknownsystem,england
-Ashford,http://planning.ashford.gov.uk/planning/Default.aspx?new=true,unknownsystem,england
+Allerdale,https://planning.allerdale.gov.uk/portal/servlets/ApplicationSearchServlet,england
+Amber Valley,https://www.ambervalley.gov.uk/environment-and-planning/planning/development-management/planning-applications/view-a-planning-application.aspx,england
+Arun,https://www.arun.gov.uk/weekly-lists,england
+Ashfield,https://www2.ashfield.gov.uk/cfusion/Planning/plan_findfile.cfm,england
+Ashford,http://planning.ashford.gov.uk/planning/Default.aspx?new=true,england
 Aylesbury Vale,https://publicaccess.aylesburyvaledc.gov.uk/online-applications//search.do?action=advanced&searchType=Application,england
 Babergh,https://planning.baberghmidsuffolk.gov.uk/online-applications/search.do?action=advanced,england
 Barking and Dagenham,http://paplan.lbbd.gov.uk/online-applications/search.do?action=advanced,london,outerlondon,northlondon,england,londonboroughs
@@ -32,14 +32,14 @@ Greenwich,https://planning.royalgreenwich.gov.uk/online-applications/search.do?a
 Hackney,http://planning.hackney.gov.uk/Northgate/PlanningExplorer/generalsearch.aspx,londonboroughs,london
 Halton,https://webapp.halton.gov.uk/planningapps/,england,cheshire,liverpoolcityregion
 Hammersmith and Fulham,http://public-access.lbhf.gov.uk/online-applications/search.do?action=advanced,london,innerlondon,northlondon,england,londonboroughs
-Haringey,http://www.planningservices.haringey.gov.uk/portal/servlets/ApplicationSearchServlet,unknownsystem,london,londonboroughs
-Harrow,http://www.harrow.gov.uk/planningsearch/lg/plansearch.page?org.apache.shale.dialog.DIALOG_NAME=planningsearch&Param=lg.Planning&searchType=detailed,unknownsystem,london,londonboroughs
+Haringey,http://www.planningservices.haringey.gov.uk/portal/servlets/ApplicationSearchServlet,london,londonboroughs
+Harrow,http://www.harrow.gov.uk/planningsearch/lg/plansearch.page?org.apache.shale.dialog.DIALOG_NAME=planningsearch&Param=lg.Planning&searchType=detailed,london,londonboroughs
 Havering,http://development.havering.gov.uk/OcellaWeb/planningSearch,london,londonboroughs,eastlondon,outerlondon
 Hillingdon,http://planning.hillingdon.gov.uk/OcellaWeb/planningSearch,london,londonboroughs,westlondon,outerlondon
-Hounslow,http://planning.hounslow.gov.uk/planning_search.aspx,unknownsystem,london,londonboroughs
+Hounslow,http://planning.hounslow.gov.uk/planning_search.aspx,london,londonboroughs
 Islington,http://planning.islington.gov.uk/northgate/planningexplorer/generalsearch.aspx,londonboroughs,london
-Kensington and Chelsea,https://www.rbkc.gov.uk/planning/searches/default.aspx?adv=1#advancedSearch,unknownsystem,london,londonboroughs
-Kingston upon Thames,https://maps.kingston.gov.uk/propertyServices/planning/Search,unknownsystem,london,londonboroughs
+Kensington and Chelsea,https://www.rbkc.gov.uk/planning/searches/default.aspx?adv=1#advancedSearch,london,londonboroughs
+Kingston upon Thames,https://maps.kingston.gov.uk/propertyServices/planning/Search,london,londonboroughs
 Knowsley,https://planapp.knowsley.gov.uk/online-applications/search.do?action=advanced,england,merseyside,liverpoolcityregion
 Lambeth,https://planning.lambeth.gov.uk/online-applications/search.do?action=advanced,londonboroughs,london,southlondon
 Leeds,https://publicaccess.leeds.gov.uk/online-applications/search.do?action=advanced,england
@@ -52,7 +52,7 @@ Newham,https://pa.newham.gov.uk/online-applications/search.do?action=advanced,lo
 Old Oak and Park Royal Development Corporation,http://planningregister.opdc.london.gov.uk/swift/apas/run/wphappcriteria.display,london,developmentcorporations,londondevelopmentcorporations
 Oldham,http://planningpa.oldham.gov.uk/online-applications/search.do?action=advanced,england,greatermanchester
 Redbridge,http://planning.redbridge.gov.uk/swiftlg/apas/run/wphappcriteria.display,london,londonboroughs
-Richmond,http://www2.richmond.gov.uk/PlanData2/Planning_Report.aspx,unknownsystem,london,londonboroughs
+Richmond,http://www2.richmond.gov.uk/PlanData2/Planning_Report.aspx,london,londonboroughs
 Rochdale,http://publicaccess.rochdale.gov.uk/online-applications/search.do?action=advanced,england,greatermanchester
 Salford,http://publicaccess.salford.gov.uk/publicaccess/search.do?action=advanced,england,greatermanchester
 Sefton,https://pa.sefton.gov.uk/online-applications/search.do?action=advanced,england,merseyside,liverpoolcityregion
@@ -62,12 +62,12 @@ Southwark,https://planning.southwark.gov.uk/online-applications/search.do?action
 St. Helens,https://publicaccess.sthelens.gov.uk/online-applications/search.do?action=advanced,england,merseyside,liverpoolcityregion
 Stockport,http://planning.stockport.gov.uk/PlanningData-live/search.do?action=advanced,england,greatermanchester
 Sutton,https://planningregister.sutton.gov.uk/online-applications/search.do?action=advanced,london,londonboroughs,outerlondon,southlondon,england
-Tameside,https://public.tameside.gov.uk/plan/f422planapp.asp,unknownsystem,england,greatermanchester
+Tameside,https://public.tameside.gov.uk/plan/f422planapp.asp,england,greatermanchester
 Tower Hamlets,https://development.towerhamlets.gov.uk/online-applications/search.do?action=advanced,londonboroughs,london
 Trafford,https://publicaccess.trafford.gov.uk/online-applications/search.do?action=advanced,england,greatermanchester
 Wakefield,https://planning.wakefield.gov.uk/online-applications/search.do?action=advanced,england
-Waltham Forest,http://planning.walthamforest.gov.uk/application-search?civica.query.ReceivedDateFrom=20%2F05%2F2018&civica.query.ReceivedDateTo=26%2F05%2F2018,unknownsystem,london,londonboroughs
+Waltham Forest,http://planning.walthamforest.gov.uk/application-search?civica.query.ReceivedDateFrom=20%2F05%2F2018&civica.query.ReceivedDateTo=26%2F05%2F2018,london,londonboroughs
 Wandsworth,https://planning1.wandsworth.gov.uk/Northgate/PlanningExplorer/GeneralSearch.aspx,london,innerlondon,southlondon,england,londonboroughs
 Westminster,http://idoxpa.westminster.gov.uk/online-applications/search.do?action=advanced,londonboroughs,london
-Wigan,https://apps.wigan.gov.uk/planapps/PlanAppsAppSearch.asp,unknownsystem,england,greatermanchester
+Wigan,https://apps.wigan.gov.uk/planapps/PlanAppsAppSearch.asp,england,greatermanchester
 Wirral,https://planning.wirral.gov.uk/online-applications/search.do?action=advanced,wirral,england,merseyside,liverpoolcityregion
