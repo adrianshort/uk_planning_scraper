@@ -3,6 +3,7 @@ require 'csv'
 module UKPlanningScraper
   class Authority
     attr_reader :name, :url
+    
     @@authorities = []
 
     def initialize(name, url)
@@ -10,43 +11,25 @@ module UKPlanningScraper
       @url = url.strip
       @tags = [] # Strings in arbitrary order
       @applications = [] # Application objects
+      @scrape_params = {}
     end
 
-    def scrape(params, options = {})
+    def scrape(options = {})
       default_options = {
         delay: 10,
       }
-      options = default_options.merge(options) # The user-supplied options override the defaults
-      
-      # Validated within the last n days
-      # Assumes that every scraper/system can do a date range search
-      if params[:validated_days]
-        params[:validated_to] = Date.today
-        params[:validated_from] = Date.today - (params[:validated_days] - 1)
-      end
-        
-      # Received within the last n days
-      # Assumes that every scraper/system can do a date range search
-      if params[:received_days]
-        params[:received_to] = Date.today
-        params[:received_from] = Date.today - (params[:received_days] - 1)
-      end
-      
-      # Decided within the last n days
-      # Assumes that every scraper/system can do a date range search
-      if params[:decided_days]
-        params[:decided_to] = Date.today
-        params[:decided_from] = Date.today - (params[:decided_days] - 1)
-      end
-      
+      # The user-supplied options override the defaults
+      options = default_options.merge(options)
+
       # Select which scraper to use
       case system
       when 'idox'
-        @applications = scrape_idox(params, options)
+        @applications = scrape_idox(@scrape_params, options)
       when 'northgate'
-        @applications = scrape_northgate(params, options)
+        @applications = scrape_northgate(@scrape_params, options)
       else
-        raise SystemNotSupported.new("Planning system not supported for #{@name} at URL: #{@url}")
+        raise SystemNotSupported.new("Planning system not supported for \
+          #{@name} at URL: #{@url}")
       end
       
       # Post processing
@@ -58,6 +41,10 @@ module UKPlanningScraper
       output = []
       # FIXME - silently ignores invalid apps. How should we handle them?
       @applications.each { |app| output << app.to_hash if app.valid? }
+      
+      # Reset so that old params don't get used for new scrapes
+      clear_scrape_params
+      
       output  # Single point of successful exit
     end
     
@@ -82,15 +69,15 @@ module UKPlanningScraper
     
     def system
       if @url.match(/search\.do\?action=advanced/i)
-        s = 'idox'
+        'idox'
       elsif @url.match(/generalsearch\.aspx/i)
-        s = 'northgate'
+        'northgate'
       elsif @url.match(/ocellaweb/i)
-        s = 'ocellaweb'
+        'ocellaweb'
       elsif @url.match(/\/apas\//)
-        s = 'agileplanning'
+        'agileplanning'
       else
-        s = 'unknownsystem'
+        'unknownsystem'
       end
     end
 
@@ -135,7 +122,8 @@ module UKPlanningScraper
     def self.load
       # Don't run this method more than once
       return unless @@authorities.empty?
-      CSV.foreach(File.join(File.dirname(__dir__), 'uk_planning_scraper', 'authorities.csv')) do |line|
+      CSV.foreach(File.join(File.dirname(__dir__), 'uk_planning_scraper', \
+        'authorities.csv')) do |line|
         auth = Authority.new(line[0], line[1])
         auth.add_tags(line[2..-1])
         auth.add_tag(auth.system)
