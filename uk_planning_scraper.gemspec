@@ -34,6 +34,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "simplecov", "~> 0.16.1"
   spec.add_development_dependency "vcr"
   spec.add_development_dependency "webmock"
+  spec.add_development_dependency "pry"
 
   spec.add_runtime_dependency "mechanize", "~> 2.7"
   spec.add_runtime_dependency "http"
