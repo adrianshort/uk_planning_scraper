@@ -1,3 +1,4 @@
+authority_name,url,tags
 Aberdeen,https://publicaccess.aberdeencity.gov.uk/online-applications/search.do?action=advanced,scotland
 Adur and Worthing,https://planning.adur-worthing.gov.uk/online-applications/search.do?action=advanced,england
 Allerdale,https://planning.allerdale.gov.uk/portal/servlets/ApplicationSearchServlet,england
@@ -7,69 +8,69 @@ Ashfield,https://www2.ashfield.gov.uk/cfusion/Planning/plan_findfile.cfm,england
 Ashford,http://planning.ashford.gov.uk/planning/Default.aspx?new=true,england
 Aylesbury Vale,https://publicaccess.aylesburyvaledc.gov.uk/online-applications//search.do?action=advanced&searchType=Application,england
 Babergh,https://planning.baberghmidsuffolk.gov.uk/online-applications/search.do?action=advanced,england
-Barking and Dagenham,http://paplan.lbbd.gov.uk/online-applications/search.do?action=advanced,london,outerlondon,northlondon,england,londonboroughs
-Barnet,https://publicaccess.barnet.gov.uk/online-applications/search.do?action=advanced,londonboroughs,london
-Bexley,http://pa.bexley.gov.uk/online-applications/search.do?action=advanced,londonboroughs,london
+Barking and Dagenham,http://paplan.lbbd.gov.uk/online-applications/search.do?action=advanced,london outerlondon northlondon england londonboroughs
+Barnet,https://publicaccess.barnet.gov.uk/online-applications/search.do?action=advanced,londonboroughs london
+Bexley,http://pa.bexley.gov.uk/online-applications/search.do?action=advanced,londonboroughs london
 Birmingham,https://eplanning.birmingham.gov.uk/Northgate/PlanningExplorer/GeneralSearch.aspx,england
-Bolton,https://www.planningpa.bolton.gov.uk/online-applications-17/search.do?action=advanced,england,greatermanchester
+Bolton,https://www.planningpa.bolton.gov.uk/online-applications-17/search.do?action=advanced,england greatermanchester
 Bradford,https://planning.bradford.gov.uk/online-applications/search.do?action=advanced,england
-Brent,https://pa.brent.gov.uk/online-applications/search.do?action=advanced&searchType=Application,londonboroughs,london
+Brent,https://pa.brent.gov.uk/online-applications/search.do?action=advanced&searchType=Application,londonboroughs london
 Brighton and Hove,https://planningapps.brighton-hove.gov.uk/online-applications/search.do?action=advanced,england
 Bristol,https://planningonline.bristol.gov.uk/online-applications/search.do?action=advanced,england
-Bromley,https://searchapplications.bromley.gov.uk/online-applications/search.do?action=advanced,londonboroughs,london
-Bury,https://planning.bury.gov.uk/online-applications/search.do?action=advanced,england,greatermanchester
-Camden,http://planningrecords.camden.gov.uk/Northgate/PlanningExplorer17/GeneralSearch.aspx,londonboroughs,london
+Bromley,https://searchapplications.bromley.gov.uk/online-applications/search.do?action=advanced,londonboroughs london
+Bury,https://planning.bury.gov.uk/online-applications/search.do?action=advanced,england greatermanchester
+Camden,http://planningrecords.camden.gov.uk/Northgate/PlanningExplorer17/GeneralSearch.aspx,londonboroughs london
 Cardiff,https://planningonline.cardiff.gov.uk/online-applications/search.do?action=advanced,wales
-Cheshire West and Chester,https://pa.cheshirewestandchester.gov.uk/online-applications/search.do?action=advanced,chester,cheshire,england
-City of London,http://www.planning2.cityoflondon.gov.uk/online-applications/search.do?action=advanced,london,innerlondon,northlondon,england
-Croydon,http://publicaccess2.croydon.gov.uk/online-applications/search.do?action=advanced,londonboroughs,london
-Ealing,https://pam.ealing.gov.uk/online-applications/search.do?action=advanced,londonboroughs,london
+Cheshire West and Chester,https://pa.cheshirewestandchester.gov.uk/online-applications/search.do?action=advanced,chester cheshire england
+City of London,http://www.planning2.cityoflondon.gov.uk/online-applications/search.do?action=advanced,london innerlondon northlondon england
+Croydon,http://publicaccess2.croydon.gov.uk/online-applications/search.do?action=advanced,londonboroughs london
+Ealing,https://pam.ealing.gov.uk/online-applications/search.do?action=advanced,londonboroughs london
 Edinburgh,https://citydev-portal.edinburgh.gov.uk/idoxpa-web/search.do?action=advanced,scotland
-Enfield,https://planningandbuildingcontrol.enfield.gov.uk/online-applications/search.do?action=advanced,londonboroughs,london
-Epsom and Ewell,http://eplanning.epsom-ewell.gov.uk/online-applications/search.do?action=advanced,surrey,england
+Enfield,https://planningandbuildingcontrol.enfield.gov.uk/online-applications/search.do?action=advanced,londonboroughs london
+Epsom and Ewell,http://eplanning.epsom-ewell.gov.uk/online-applications/search.do?action=advanced,surrey england
 Glasgow,https://publicaccess.glasgow.gov.uk/online-applications/search.do?action=advanced,scotland
-Greenwich,https://planning.royalgreenwich.gov.uk/online-applications/search.do?action=advanced,london,innerlondon,southlondon,england,londonboroughs
-Hackney,http://planning.hackney.gov.uk/Northgate/PlanningExplorer/generalsearch.aspx,londonboroughs,london
-Halton,https://webapp.halton.gov.uk/planningapps/,england,cheshire,liverpoolcityregion
-Hammersmith and Fulham,http://public-access.lbhf.gov.uk/online-applications/search.do?action=advanced,london,innerlondon,northlondon,england,londonboroughs
-Haringey,http://www.planningservices.haringey.gov.uk/portal/servlets/ApplicationSearchServlet,london,londonboroughs
-Harrow,http://www.harrow.gov.uk/planningsearch/lg/plansearch.page?org.apache.shale.dialog.DIALOG_NAME=planningsearch&Param=lg.Planning&searchType=detailed,london,londonboroughs
-Havering,http://development.havering.gov.uk/OcellaWeb/planningSearch,london,londonboroughs,eastlondon,outerlondon
-Hillingdon,http://planning.hillingdon.gov.uk/OcellaWeb/planningSearch,london,londonboroughs,westlondon,outerlondon
-Hounslow,http://planning.hounslow.gov.uk/planning_search.aspx,london,londonboroughs
-Islington,http://planning.islington.gov.uk/northgate/planningexplorer/generalsearch.aspx,londonboroughs,london
-Kensington and Chelsea,https://www.rbkc.gov.uk/planning/searches/default.aspx?adv=1#advancedSearch,london,londonboroughs
-Kingston upon Thames,https://maps.kingston.gov.uk/propertyServices/planning/Search,london,londonboroughs
-Knowsley,https://planapp.knowsley.gov.uk/online-applications/search.do?action=advanced,england,merseyside,liverpoolcityregion
-Lambeth,https://planning.lambeth.gov.uk/online-applications/search.do?action=advanced,londonboroughs,london,southlondon
+Greenwich,https://planning.royalgreenwich.gov.uk/online-applications/search.do?action=advanced,london innerlondon southlondon england londonboroughs
+Hackney,http://planning.hackney.gov.uk/Northgate/PlanningExplorer/generalsearch.aspx,londonboroughs london
+Halton,https://webapp.halton.gov.uk/planningapps/,england cheshire liverpoolcityregion
+Hammersmith and Fulham,http://public-access.lbhf.gov.uk/online-applications/search.do?action=advanced,london innerlondon northlondon england londonboroughs
+Haringey,http://www.planningservices.haringey.gov.uk/portal/servlets/ApplicationSearchServlet,london londonboroughs
+Harrow,http://www.harrow.gov.uk/planningsearch/lg/plansearch.page?org.apache.shale.dialog.DIALOG_NAME=planningsearch&Param=lg.Planning&searchType=detailed,london londonboroughs
+Havering,http://development.havering.gov.uk/OcellaWeb/planningSearch,london londonboroughs eastlondon outerlondon
+Hillingdon,http://planning.hillingdon.gov.uk/OcellaWeb/planningSearch,london londonboroughs westlondon outerlondon
+Hounslow,http://planning.hounslow.gov.uk/planning_search.aspx,london londonboroughs
+Islington,http://planning.islington.gov.uk/northgate/planningexplorer/generalsearch.aspx,londonboroughs london
+Kensington and Chelsea,https://www.rbkc.gov.uk/planning/searches/default.aspx?adv=1#advancedSearch,london londonboroughs
+Kingston upon Thames,https://maps.kingston.gov.uk/propertyServices/planning/Search,london londonboroughs
+Knowsley,https://planapp.knowsley.gov.uk/online-applications/search.do?action=advanced,england merseyside liverpoolcityregion
+Lambeth,https://planning.lambeth.gov.uk/online-applications/search.do?action=advanced,londonboroughs london southlondon
 Leeds,https://publicaccess.leeds.gov.uk/online-applications/search.do?action=advanced,england
-Lewisham,http://planning.lewisham.gov.uk/online-applications/search.do?action=advanced,londonboroughs,london,southlondon
-Liverpool,http://northgate.liverpool.gov.uk/PlanningExplorer17/GeneralSearch.aspx,england,merseyside,liverpoolcityregion
-London Legacy Development Corporation,http://planningregister.londonlegacy.co.uk/swift/apas/run/wphappcriteria.display,london,developmentcorporations,londondevelopmentcorporations
-Manchester,https://pa.manchester.gov.uk/online-applications/search.do?action=advanced,england,greatermanchester
-Merton,http://planning.merton.gov.uk/Northgate/PlanningExplorerAA/GeneralSearch.aspx,london,outerlondon,southlondon,england,londonboroughs
-Newham,https://pa.newham.gov.uk/online-applications/search.do?action=advanced,londonboroughs,london,londonboroughs
-Northern Ireland,http://epicpublic.planningni.gov.uk/publicaccess/search.do?action=advanced&searchType=Application,northernireland,belfast
-Nottingham,http://publicaccess.nottinghamcity.gov.uk/online-applications/search.do?action=advanced,nottingham,eastmidlands,england
-Old Oak and Park Royal Development Corporation,http://planningregister.opdc.london.gov.uk/swift/apas/run/wphappcriteria.display,london,developmentcorporations,londondevelopmentcorporations
-Oldham,http://planningpa.oldham.gov.uk/online-applications/search.do?action=advanced,england,greatermanchester
-Redbridge,http://planning.redbridge.gov.uk/swiftlg/apas/run/wphappcriteria.display,london,londonboroughs
-Richmond,http://www2.richmond.gov.uk/PlanData2/Planning_Report.aspx,london,londonboroughs
-Rochdale,http://publicaccess.rochdale.gov.uk/online-applications/search.do?action=advanced,england,greatermanchester
-Salford,http://publicaccess.salford.gov.uk/publicaccess/search.do?action=advanced,england,greatermanchester
-Sefton,https://pa.sefton.gov.uk/online-applications/search.do?action=advanced,england,merseyside,liverpoolcityregion
+Lewisham,http://planning.lewisham.gov.uk/online-applications/search.do?action=advanced,londonboroughs london southlondon
+Liverpool,http://northgate.liverpool.gov.uk/PlanningExplorer17/GeneralSearch.aspx,england merseyside liverpoolcityregion
+London Legacy Development Corporation,http://planningregister.londonlegacy.co.uk/swift/apas/run/wphappcriteria.display,london developmentcorporations londondevelopmentcorporations
+Manchester,https://pa.manchester.gov.uk/online-applications/search.do?action=advanced,england greatermanchester
+Merton,http://planning.merton.gov.uk/Northgate/PlanningExplorerAA/GeneralSearch.aspx,london outerlondon southlondon england londonboroughs
+Newham,https://pa.newham.gov.uk/online-applications/search.do?action=advanced,londonboroughs london londonboroughs
+Northern Ireland,http://epicpublic.planningni.gov.uk/publicaccess/search.do?action=advanced&searchType=Application,northernireland belfast
+Nottingham,http://publicaccess.nottinghamcity.gov.uk/online-applications/search.do?action=advanced,nottingham eastmidlands england
+Old Oak and Park Royal Development Corporation,http://planningregister.opdc.london.gov.uk/swift/apas/run/wphappcriteria.display,london developmentcorporations londondevelopmentcorporations
+Oldham,http://planningpa.oldham.gov.uk/online-applications/search.do?action=advanced,england greatermanchester
+Redbridge,http://planning.redbridge.gov.uk/swiftlg/apas/run/wphappcriteria.display,london londonboroughs
+Richmond,http://www2.richmond.gov.uk/PlanData2/Planning_Report.aspx,london londonboroughs
+Rochdale,http://publicaccess.rochdale.gov.uk/online-applications/search.do?action=advanced,england greatermanchester
+Salford,http://publicaccess.salford.gov.uk/publicaccess/search.do?action=advanced,england greatermanchester
+Sefton,https://pa.sefton.gov.uk/online-applications/search.do?action=advanced,england merseyside liverpoolcityregion
 Sheffield,https://planningapps.sheffield.gov.uk/online-applications/search.do?action=advanced,england
-South Downs,https://planningpublicaccess.southdowns.gov.uk/online-applications/search.do?action=advanced,nationalparks,england
-Southwark,https://planning.southwark.gov.uk/online-applications/search.do?action=advanced,londonboroughs,london
-St. Helens,https://publicaccess.sthelens.gov.uk/online-applications/search.do?action=advanced,england,merseyside,liverpoolcityregion
-Stockport,http://planning.stockport.gov.uk/PlanningData-live/search.do?action=advanced,england,greatermanchester
-Sutton,https://planningregister.sutton.gov.uk/online-applications/search.do?action=advanced,london,londonboroughs,outerlondon,southlondon,england
-Tameside,https://public.tameside.gov.uk/plan/f422planapp.asp,england,greatermanchester
-Tower Hamlets,https://development.towerhamlets.gov.uk/online-applications/search.do?action=advanced,londonboroughs,london
-Trafford,https://publicaccess.trafford.gov.uk/online-applications/search.do?action=advanced,england,greatermanchester
+South Downs,https://planningpublicaccess.southdowns.gov.uk/online-applications/search.do?action=advanced,nationalparks england
+Southwark,https://planning.southwark.gov.uk/online-applications/search.do?action=advanced,londonboroughs london
+St. Helens,https://publicaccess.sthelens.gov.uk/online-applications/search.do?action=advanced,england merseyside liverpoolcityregion
+Stockport,http://planning.stockport.gov.uk/PlanningData-live/search.do?action=advanced,england greatermanchester
+Sutton,https://planningregister.sutton.gov.uk/online-applications/search.do?action=advanced,london londonboroughs outerlondon southlondon england
+Tameside,https://public.tameside.gov.uk/plan/f422planapp.asp,england greatermanchester
+Tower Hamlets,https://development.towerhamlets.gov.uk/online-applications/search.do?action=advanced,londonboroughs london
+Trafford,https://publicaccess.trafford.gov.uk/online-applications/search.do?action=advanced,england greatermanchester
 Wakefield,https://planning.wakefield.gov.uk/online-applications/search.do?action=advanced,england
-Waltham Forest,http://planning.walthamforest.gov.uk/application-search?civica.query.ReceivedDateFrom=20%2F05%2F2018&civica.query.ReceivedDateTo=26%2F05%2F2018,london,londonboroughs
-Wandsworth,https://planning1.wandsworth.gov.uk/Northgate/PlanningExplorer/GeneralSearch.aspx,london,innerlondon,southlondon,england,londonboroughs
-Westminster,http://idoxpa.westminster.gov.uk/online-applications/search.do?action=advanced,londonboroughs,london
-Wigan,https://apps.wigan.gov.uk/planapps/PlanAppsAppSearch.asp,england,greatermanchester
-Wirral,https://planning.wirral.gov.uk/online-applications/search.do?action=advanced,wirral,england,merseyside,liverpoolcityregion
+Waltham Forest,http://planning.walthamforest.gov.uk/application-search?civica.query.ReceivedDateFrom=20%2F05%2F2018&civica.query.ReceivedDateTo=26%2F05%2F2018,london londonboroughs
+Wandsworth,https://planning1.wandsworth.gov.uk/Northgate/PlanningExplorer/GeneralSearch.aspx,london innerlondon southlondon england londonboroughs
+Westminster,http://idoxpa.westminster.gov.uk/online-applications/search.do?action=advanced,londonboroughs london
+Wigan,https://apps.wigan.gov.uk/planapps/PlanAppsAppSearch.asp,england greatermanchester
+Wirral,https://planning.wirral.gov.uk/online-applications/search.do?action=advanced,wirral england merseyside liverpoolcityregion

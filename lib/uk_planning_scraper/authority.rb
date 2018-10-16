@@ -123,9 +123,13 @@ module UKPlanningScraper
       # Don't run this method more than once
       return unless @@authorities.empty?
       CSV.foreach(File.join(File.dirname(__dir__), 'uk_planning_scraper', \
-        'authorities.csv')) do |line|
-        auth = Authority.new(line[0], line[1])
-        auth.add_tags(line[2..-1])
+          'authorities.csv'), :headers => true) do |line|
+        auth = Authority.new(line['authority_name'], line['url'])
+        
+        if line['tags']
+          auth.add_tags(line['tags'].split(/\s+/))
+        end
+        
         auth.add_tag(auth.system)
         @@authorities << auth
       end
