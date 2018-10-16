@@ -1,12 +1,19 @@
 # UK Planning Scraper
 
-**PRE-ALPHA: Only works with Idox and Northgate sites and spews a lot of stuff to STDOUT. Not for production use.**
+**PRE-ALPHA: Only works with Idox and Northgate sites and spews a lot of stuff
+to STDOUT. Not for production use.**
 
-This gem scrapes planning applications data from UK local planning authority websites, eg Westminster City Council. Data is returned as an array of hashes, one hash for each planning application.
+This gem scrapes planning applications data from UK local planning authority
+websites, eg Westminster City Council. Data is returned as an array of hashes,
+one hash for each planning application.
 
-This scraper gem doesn't use a database. Storing the output is up to you. It's just a convenient way to get the data.
+This scraper gem doesn't use a database. Storing the output is up to you. It's
+just a convenient way to get the data.
 
-Currently this only works for Idox and Northgate sites. The ultimate aim is to provide a consistent interface in a single gem for all variants of all planning systems: Idox Public Access, Northgate Planning Explorer, OcellaWeb, Agile Planning and all the one-off systems.
+Currently this only works for Idox and Northgate sites. The ultimate aim is to
+provide a consistent interface in a single gem for all variants of all planning
+systems: Idox Public Access, Northgate Planning Explorer, OcellaWeb, Agile
+Planning and all the one-off systems.
 
 This project is not affiliated with any organisation.
 
@@ -15,7 +22,8 @@ This project is not affiliated with any organisation.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'uk_planning_scraper', :git => 'https://github.com/adrianshort/uk_planning_scraper/'
+gem 'uk_planning_scraper', \
+  git: 'https://github.com/adrianshort/uk_planning_scraper/'
 ```
 
 And then execute:
@@ -38,66 +46,87 @@ require 'pp'
 
 ### Scrape from a council
 
+Applications in Westminster decided in the last seven days:
+
 ```ruby
-apps = UKPlanningScraper::Authority.named('Westminster').scrape({ decided_days: 7 })
-pp apps
+pp UKPlanningScraper::Authority.named('Westminster').decided_days(7).scrape
 ```
 
 ### Scrape from a bunch of councils
 
-```ruby
-auths = UKPlanningScraper::Authority.tagged('london')
+Scrape the last week's planning decisions across the whole of
+London (actually 23 of the 35 authorities right now):
 
-auths.each do |auth|
-  apps = auth.scrape({ decided_days: 7 })
-  pp apps # You'll probably want to save `apps` to your database here
+```ruby
+authorities = UKPlanningScraper::Authority.tagged('london')
+
+authorities.each do |authority|
+  applications = authority.decided_days(7).scrape
+  pp applications
+  # You'll probably want to save `applications` to your database here
 end
 ```
-
-Yes, we just scraped the last week's planning decisions across the whole of London (actually 23 of the 35 authorities right now) with five lines of code.
 
 ### Satisfy your niche interests
 
-```ruby
-auths = UKPlanningScraper::Authority.tagged('scotland')
+Launderette applications validated in the last seven days in Scotland:
 
-auths.each do |auth|
-  apps = auth.scrape({ validated_days: 7, keywords: 'launderette' })
-  pp apps # You'll probably want to save `apps` to your database here
+```ruby
+authorities = UKPlanningScraper::Authority.tagged('scotland')
+
+authorities.each do |authority|
+  applications = authority.validated_days(7).keywords('launderette').scrape
+  pp applications # You'll probably want to save `apps` to your database here
 end
 ```
 
-### More search parameters
+### More scrape parameter methods
+
+Chain as many scrape parameter methods on a `UKPlanningScraper::Authority`
+object as you like, making sure that `scrape` comes last.
 
 ```ruby
+received_from(Date.parse("1 Jan 2016"))
+received_to(Date.parse("31 Dec 2016"))
 
-# Don't try these all at once
-params = {
-  received_to: Date.today,
-  received_from: Date.today - 30,
-  received_days: 7, # instead of received_to, received_from
-  validated_to: Date.today,
-  validated_from: Date.today - 30,
-  validated_days: 7, # instead of validated_to, validated_from
-  decided_to: Date.today,
-  decided_from: Date.today - 30,
-  decided_days: 7 # instead of decided_to, decided_from
-  keywords: "hip gable", # Check that the systems you're scraping return the results you expect for multiple keywords (AND or OR?)
-}
+# Received in the last n days (including today)
+# Use instead of received_to, received_from
+received_days(7) 
 
-apps = UKPlanningScraper::Authority.named('Camden').scrape(params)
+validated_to(Date.today)
+validated_from(Date.today - 30)
+validated_days(7) # instead of validated_to, validated_from
+
+decided_to(Date.today)
+decided_from(Date.today - 30)
+decided_days(7) # instead of decided_to, decided_from
+
+# Check that the systems you're scraping return the
+# results you expect for multiple keywords (AND or OR?)
+keywords("hip gable") 
+
+applicant_name("Mr and Mrs Smith") # Currently Idox only
+application_type("Householder") # Currently Idox only
+development_type("") # Currently Idox only
+
+scrape # runs the scraper
 ```
 
 ### Save to a SQLite database
 
-This gem has no interest whatsoever in persistence. What you do with the data it outputs is up to you: relational databases, document stores, VHS and clay tablets are all blissfully none of its business. But using the [ScraperWiki](https://github.com/openaustralia/scraperwiki-ruby) gem is a really easy way to store your data:
+This gem has no interest whatsoever in persistence. What you do with the data it
+outputs is up to you: relational databases, document stores, VHS and clay
+tablets are all blissfully none of its business. But using the
+[ScraperWiki](https://github.com/openaustralia/scraperwiki-ruby) gem is a really
+easy way to store your data:
 
 ```ruby
 require 'scraperwiki' # Must be installed, of course
-ScraperWiki.save_sqlite([:authority_name, :council_reference], apps)
+ScraperWiki.save_sqlite([:authority_name, :council_reference], applications)
 ```
 
-That `apps` param can be a hash or an array of hashes, which is what gets returned by our `Authority.scrape`.
+That `applications` param can be a hash or an array of hashes, which is what
+gets returned by our `Authority.scrape`.
 
 ### Find authorities by tag
 
@@ -130,11 +159,18 @@ and whatever you'd like to add that would be useful to others.
 
 ### WTF is up with London?
 
-London has got 32 London Boroughs, tagged `londonboroughs`. These are the councils under the authority of the Mayor of London and the Greater London Authority.
+London has got 32 London Boroughs, tagged `londonboroughs`. These are the
+councils under the authority of the Mayor of London and the Greater London
+Authority.
 
-It has 33 councils: the London Boroughs plus the City of London (named `City of London`). We don't currently have a tag for this, but if you want to add `londoncouncils` please go ahead.
+It has 33 councils: the London Boroughs plus the City of London (named `City of
+London`). We don't currently have a tag for this, but if you want to add
+`londoncouncils` please go ahead.
 
-And it's got 35 local planning authorities: the 33 councils plus the two `londondevelopmentcorporations`, named `London Legacy Development Corporation` and `Old Oak and Park Royal Development Corporation`. The tag `london` covers all (and only) the 35 local planning authorities in London.
+And it's got 35 local planning authorities: the 33 councils plus the two
+`londondevelopmentcorporations`, named `London Legacy Development Corporation`
+and `Old Oak and Park Royal Development Corporation`. The tag `london` covers
+all (and only) the 35 local planning authorities in London.
 
 ```ruby
 UKPlanningScraper::Authority.tagged('londonboroughs').size
@@ -151,13 +187,13 @@ UKPlanningScraper::Authority.tagged('london').size
 
 ```ruby
 UKPlanningScraper::Authority.named('Merton').tags
-# => ["england", "london", "londonboroughs", "northgate", "outerlondon", "southlondon"]
+ # => ["england", "london", "londonboroughs", "northgate", "outerlondon", "southlondon"]
 
 UKPlanningScraper::Authority.not_tagged('london')
-# => [...]
+ # => [...]
 
 UKPlanningScraper::Authority.named('Islington').tagged?('southlondon')
-# => false
+ # => false
 ```
 
 ### List all authorities
@@ -177,15 +213,20 @@ The list of authorities is in a CSV file in `/lib/uk_planning_scraper`:
 
 https://github.com/adrianshort/uk_planning_scraper/blob/master/lib/uk_planning_scraper/authorities.csv
 
-The easiest way to add to or edit this list is to edit within GitHub (use the pencil icon) and create a new pull request for your changes. If accepted, your changes will be available to everyone with the next version of the gem.
+The easiest way to add to or edit this list is to edit within GitHub (use the
+  pencil icon) and create a new pull request for your changes. If accepted, your
+  changes will be available to everyone with the next version of the gem.
 
 The file format is one line per authority, with comma-separated:
 
-- Name (omit "the", "council", "borough of", "city of", etc. and write "and" not "&", except for `City of London` which is a special case)
+- Name (omit "the", "council", "borough of", "city of", etc. and write "and" not
+  "&", except for `City of London` which is a special case)
 - URL of the search form (use the advanced search URL if there is one)
-- Tags (use as many comma-separated tags as is reasonable, lowercase and all one word.)
+- Tags (use as many comma-separated tags as is reasonable, lowercase and all one
+  word.)
 
-There's no need to manually add tags to the `authorities.csv` file for the software systems like `idox`, `northgate` etc as these are added automatically.
+There's no need to manually add tags to the `authorities.csv` file for the
+software systems like `idox`, `northgate` etc as these are added automatically.
 
 Please check the tag list before you change anything:
 
@@ -195,10 +236,17 @@ pp UKPlanningScraper::Authority.tags
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bin/setup` to install dependencies. You can
+also run `bin/console` for an interactive prompt that will allow you to
+experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+To install this gem onto your local machine, run `bundle exec rake install`. To
+release a new version, update the version number in `version.rb`, and then run
+`bundle exec rake release`, which will create a git tag for the version, push
+git commits and tags, and push the `.gem` file to
+[rubygems.org](https://rubygems.org).
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/adrianshort/uk_planning_scraper.
+Bug reports and pull requests are welcome on GitHub at
+https://github.com/adrianshort/uk_planning_scraper.
