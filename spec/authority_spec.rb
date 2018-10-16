@@ -28,7 +28,7 @@ describe UKPlanningScraper::Authority do
     let(:all) { described_class.all }
 
     it 'returns all authorities' do
-      expect(all.count).to eq(74)
+      expect(all.count).to eq(75)
     end
 
     it 'returns a list of authorities' do
