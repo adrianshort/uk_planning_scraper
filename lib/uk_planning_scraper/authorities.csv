@@ -54,6 +54,7 @@ Northern Ireland,http://epicpublic.planningni.gov.uk/publicaccess/search.do?acti
 Nottingham,http://publicaccess.nottinghamcity.gov.uk/online-applications/search.do?action=advanced,nottingham eastmidlands england
 Old Oak and Park Royal Development Corporation,http://planningregister.opdc.london.gov.uk/swift/apas/run/wphappcriteria.display,london developmentcorporations londondevelopmentcorporations
 Oldham,http://planningpa.oldham.gov.uk/online-applications/search.do?action=advanced,england greatermanchester
+Portsmouth,http://publicaccess.portsmouth.gov.uk/online-applications/search.do?action=advanced,england
 Redbridge,http://planning.redbridge.gov.uk/swiftlg/apas/run/wphappcriteria.display,london londonboroughs
 Richmond,http://www2.richmond.gov.uk/PlanData2/Planning_Report.aspx,london londonboroughs
 Rochdale,http://publicaccess.rochdale.gov.uk/online-applications/search.do?action=advanced,england greatermanchester
@@ -61,6 +62,7 @@ Salford,http://publicaccess.salford.gov.uk/publicaccess/search.do?action=advance
 Sefton,https://pa.sefton.gov.uk/online-applications/search.do?action=advanced,england merseyside liverpoolcityregion
 Sheffield,https://planningapps.sheffield.gov.uk/online-applications/search.do?action=advanced,england
 South Downs,https://planningpublicaccess.southdowns.gov.uk/online-applications/search.do?action=advanced,nationalparks england
+Southampton,https://planningpublicaccess.southampton.gov.uk/online-applications/search.do?action=advanced,england
 Southwark,https://planning.southwark.gov.uk/online-applications/search.do?action=advanced,londonboroughs london
 St. Helens,https://publicaccess.sthelens.gov.uk/online-applications/search.do?action=advanced,england merseyside liverpoolcityregion
 Stockport,http://planning.stockport.gov.uk/PlanningData-live/search.do?action=advanced,england greatermanchester
