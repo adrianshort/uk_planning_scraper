@@ -22,18 +22,16 @@ This project is not affiliated with any organisation.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'uk_planning_scraper', \
-  git: 'https://github.com/adrianshort/uk_planning_scraper/'
+gem 'uk_planning_scraper'
 ```
 
 And then execute:
 
     $ bundle install
 
-Or install it yourself as:
+Or install it directly:
 
-    $ gem install specific_install
-    $ gem specific_install adrianshort/uk_planning_scraper
+    $ gem install uk_planning_scraper
 
 ## Usage
 
