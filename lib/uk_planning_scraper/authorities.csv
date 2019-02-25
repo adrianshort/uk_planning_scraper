@@ -1,8 +1,10 @@
 authority_name,url,tags
 Aberdeen,https://publicaccess.aberdeencity.gov.uk/online-applications/search.do?action=advanced,scotland
+Aberdeenshire,https://upa.aberdeenshire.gov.uk/online-applications/search.do?action=advanced,scotland
 Adur and Worthing,https://planning.adur-worthing.gov.uk/online-applications/search.do?action=advanced,england
 Allerdale,https://planning.allerdale.gov.uk/portal/servlets/ApplicationSearchServlet,england
 Amber Valley,https://www.ambervalley.gov.uk/environment-and-planning/planning/development-management/planning-applications/view-a-planning-application.aspx,england
+Argyll and Bute,https://publicaccess.argyll-bute.gov.uk/online-applications/search.do?action=advanced,scotland
 Arun,https://www.arun.gov.uk/weekly-lists,england
 Ashfield,https://www2.ashfield.gov.uk/cfusion/Planning/plan_findfile.cfm,england
 Ashford,http://planning.ashford.gov.uk/planning/Default.aspx?new=true,england
@@ -32,6 +34,7 @@ Cornwall,http://planning.cornwall.gov.uk/online-applications/search.do?action=ad
 County Durham,https://publicaccess.durham.gov.uk/online-applications/search.do?action=advanced,england
 Darlington,https://publicaccess.darlington.gov.uk/online-applications/search.do?action=advanced,england
 Doncaster,https://planning.doncaster.gov.uk/online-applications/search.do?action=advanced,england southyorkshire
+Dumfries and Galloway,https://eaccess.dumgal.gov.uk/online-applications/search.do?action=advanced,scotland
 Ealing,https://pam.ealing.gov.uk/online-applications/search.do?action=advanced,londonboroughs london
 East Riding of Yorkshire,https://newplanningaccess.eastriding.gov.uk/newplanningaccess/search.do?action=advanced,england
 Edinburgh,https://citydev-portal.edinburgh.gov.uk/idoxpa-web/search.do?action=advanced,scotland
@@ -46,6 +49,7 @@ Haringey,http://www.planningservices.haringey.gov.uk/portal/servlets/Application
 Harrow,http://www.harrow.gov.uk/planningsearch/lg/plansearch.page?org.apache.shale.dialog.DIALOG_NAME=planningsearch&Param=lg.Planning&searchType=detailed,london londonboroughs
 Havering,http://development.havering.gov.uk/OcellaWeb/planningSearch,london londonboroughs eastlondon outerlondon
 Hillingdon,http://planning.hillingdon.gov.uk/OcellaWeb/planningSearch,london londonboroughs westlondon outerlondon
+Highland,https://wam.highland.gov.uk/wam/search.do?action=advanced,scotland
 Hounslow,http://planning.hounslow.gov.uk/planning_search.aspx,london londonboroughs
 Hull,https://www.hullcc.gov.uk/padcbc/publicaccess-live/search.do?action=advanced,england
 Islington,http://planning.islington.gov.uk/northgate/planningexplorer/generalsearch.aspx,londonboroughs london
@@ -62,6 +66,7 @@ Merton,http://planning.merton.gov.uk/Northgate/PlanningExplorerAA/GeneralSearch.
 Milton Keynes,https://publicaccess2.milton-keynes.gov.uk/online-applications/search.do?action=advanced,england
 Newcastle upon Tyne,https://publicaccessapplications.newcastle.gov.uk/online-applications/search.do?action=advanced,england tyneandwear
 Newham,https://pa.newham.gov.uk/online-applications/search.do?action=advanced,londonboroughs london londonboroughs
+North Ayrshire,https://www.eplanning.north-ayrshire.gov.uk/OnlinePlanning/search.do?action=advanced,scotland
 North East Lincolnshire,http://planninganddevelopment.nelincs.gov.uk/online-applications/search.do?action=advanced,england
 North Lincolnshire,http://www.planning.northlincs.gov.uk/plan/search/,england
 North Somerset,https://planning.n-somerset.gov.uk/online-applications/search.do?action=advanced,england
@@ -75,6 +80,7 @@ Peterborough,https://planpa.peterborough.gov.uk/online-applications/search.do?ac
 Plymouth,https://planning.plymouth.gov.uk/online-applications/search.do?action=advanced,england
 Poole,https://boppa.poole.gov.uk/online-applications/search.do?action=advanced,england
 Portsmouth,http://publicaccess.portsmouth.gov.uk/online-applications/search.do?action=advanced,england
+Purbeck,https://planningsearch.purbeck-dc.gov.uk/PlanAppSrch.aspx,england
 Redbridge,http://planning.redbridge.gov.uk/swiftlg/apas/run/wphappcriteria.display,london londonboroughs
 Richmond,http://www2.richmond.gov.uk/PlanData2/Planning_Report.aspx,london londonboroughs
 Rochdale,http://publicaccess.rochdale.gov.uk/online-applications/search.do?action=advanced,england greatermanchester

@@ -41,6 +41,7 @@ module UKPlanningScraper
       form.send(:"date(applicationDecisionStart)", params[:decided_from].strftime(date_format)) if params[:decided_from]
       form.send(:"date(applicationDecisionEnd)", params[:decided_to].strftime(date_format)) if params[:decided_to]
 
+      form.send(:"searchCriteria\.reference", params[:reference])
       form.send(:"searchCriteria\.description", params[:keywords])
       
       # Some councils don't have the applicant name on their form, eg Bexley
@@ -115,68 +116,84 @@ module UKPlanningScraper
         
         if res.code == '200' # That's a String not an Integer, ffs
           # Parse the summary tab for this app
-
-          app.scraped_at = Time.now
-
-          # The Documents tab doesn't show if there are no documents (we get li.nodocuments instead)
-          # Bradford has #tab_documents but without the document count on it
-          app.documents_count = 0
-
-          if documents_link = res.at('.associateddocument a')
-            if documents_link.inner_text.match(/\d+/)
-              app.documents_count = documents_link.inner_text.match(/\d+/)[0].to_i
-              app.documents_url = base_url + documents_link[:href]
-            end
-          elsif documents_link = res.at('#tab_documents')
-            if documents_link.inner_text.match(/\d+/)
-              app.documents_count = documents_link.inner_text.match(/\d+/)[0].to_i
-              app.documents_url = base_url + documents_link[:href]
-            end
-          end
-          
-          # We need to find values in the table by using the th labels.
-          # The row indexes/positions change from site to site (or even app to app) so we can't rely on that.
-
-          res.search('#simpleDetailsTable tr').each do |row|
-            key = row.at('th').inner_text.strip
-            value = row.at('td').inner_text.strip
-            
-            case key
-              when 'Reference'
-                app.council_reference = value
-              when 'Alternative Reference'
-                app.alternative_reference = value unless value.empty?
-              when 'Planning Portal Reference'
-                app.alternative_reference = value unless value.empty?
-              when 'Application Received'
-                app.date_received = Date.parse(value) if value.match(/\d/)
-              when 'Application Registered'
-                app.date_received = Date.parse(value) if value.match(/\d/)
-              when 'Application Validated'
-                app.date_validated = Date.parse(value) if value.match(/\d/)
-              when 'Address'
-                app.address = value unless value.empty?
-              when 'Proposal'
-                app.description = value unless value.empty?
-              when 'Status'
-                app.status = value unless value.empty?
-              when 'Decision'
-                app.decision = value unless value.empty?
-              when 'Decision Issued Date'
-                app.date_decision = Date.parse(value) if value.match(/\d/)
-              when 'Appeal Status'
-                app.appeal_status = value unless value.empty?
-              when 'Appeal Decision'
-                app.appeal_decision = value unless value.empty?
-              else
-                puts "Error: key '#{key}' not found"
-            end # case
-          end # each row
+          parse_summary(app, res)
         else
           puts "Error: HTTP #{res.code}"
         end # if
       end # scrape summary tab for apps
+
+      if apps == [] && page.search('pa')
+        puts "# direct hit!"
+        app = Application.new
+        parse_summary(app, page)
+        apps << app
+      end # direct hit
       apps
     end # scrape_idox
+
+    def parse_summary(app, res)
+      base_url = @url.match(/(https?:\/\/.+?)\//)[1]
+
+      app.scraped_at = Time.now
+
+      unless app.info_url
+        key_val = res.link_with(id: 'tab_summary')&.href
+        app.info_url = "#{base_url}#{key_val}"
+      end
+
+      # The Documents tab doesn't show if there are no documents (we get li.nodocuments instead)
+      # Bradford has #tab_documents but without the document count on it
+      app.documents_count = 0
+
+      if documents_link = res.at('.associateddocument a')
+        if documents_link.inner_text.match(/\d+/)
+          app.documents_count = documents_link.inner_text.match(/\d+/)[0].to_i
+          app.documents_url = base_url + documents_link[:href]
+        end
+      elsif documents_link = res.at('#tab_documents')
+        if documents_link.inner_text.match(/\d+/)
+          app.documents_count = documents_link.inner_text.match(/\d+/)[0].to_i
+          app.documents_url = base_url + documents_link[:href]
+        end
+      end
+      
+      # We need to find values in the table by using the th labels.
+      # The row indexes/positions change from site to site (or even app to app) so we can't rely on that.
+      res.search('#simpleDetailsTable tr').each do |row|
+        key = row.at('th').inner_text.strip
+        value = row.at('td').inner_text.strip
+        
+        case key
+          when 'Reference'
+            app.council_reference = value
+          when 'Alternative Reference'
+            app.alternative_reference = value unless value.empty?
+          when 'Planning Portal Reference'
+            app.alternative_reference = value unless value.empty?
+          when 'Application Received'
+            app.date_received = Date.parse(value) if value.match(/\d/)
+          when 'Application Registered'
+            app.date_received = Date.parse(value) if value.match(/\d/)
+          when 'Application Validated'
+            app.date_validated = Date.parse(value) if value.match(/\d/)
+          when 'Address'
+            app.address = value unless value.empty?
+          when 'Proposal'
+            app.description = value unless value.empty?
+          when 'Status'
+            app.status = value unless value.empty?
+          when 'Decision'
+            app.decision = value unless value.empty?
+          when 'Decision Issued Date'
+            app.date_decision = Date.parse(value) if value.match(/\d/)
+          when 'Appeal Status'
+            app.appeal_status = value unless value.empty?
+          when 'Appeal Decision'
+            app.appeal_decision = value unless value.empty?
+          else
+            puts "Error: key '#{key}' not found"
+        end # case
+      end
+    end
   end # class
 end
