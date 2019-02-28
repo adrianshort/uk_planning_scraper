@@ -123,7 +123,6 @@ module UKPlanningScraper
       end # scrape summary tab for apps
 
       if apps == [] && page.search('pa')
-        puts "# direct hit!"
         app = Application.new
         parse_summary(app, page)
         apps << app
