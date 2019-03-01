@@ -51,9 +51,9 @@ module UKPlanningScraper
       self
     end
     
-    def reference(s)
+    def council_reference(s)
       check_class(s, String)
-      @scrape_params[:reference] = s.strip
+      @scrape_params[:council_reference] = s.strip
       self
     end
     

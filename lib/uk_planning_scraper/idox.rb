@@ -41,7 +41,7 @@ module UKPlanningScraper
       form.send(:"date(applicationDecisionStart)", params[:decided_from].strftime(date_format)) if params[:decided_from]
       form.send(:"date(applicationDecisionEnd)", params[:decided_to].strftime(date_format)) if params[:decided_to]
 
-      form.send(:"searchCriteria\.reference", params[:reference])
+      form.send(:"searchCriteria\.reference", params[:council_reference])
       form.send(:"searchCriteria\.description", params[:keywords])
       
       # Some councils don't have the applicant name on their form, eg Bexley
@@ -124,6 +124,7 @@ module UKPlanningScraper
 
       if apps == [] && page.search('pa')
         app = Application.new
+        app.council_reference = params[:council_reference] if params[:council_reference]
         parse_summary(app, page)
         apps << app
       end # direct hit
