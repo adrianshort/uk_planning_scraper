@@ -122,9 +122,9 @@ module UKPlanningScraper
         end # if
       end # scrape summary tab for apps
 
-      if apps == [] && page.search('pa')
+      if apps == [] && params[:council_reference] && page.at_css('.addressCrumb')
         app = Application.new
-        app.council_reference = params[:council_reference] if params[:council_reference]
+        app.council_reference = params[:council_reference]
         parse_summary(app, page)
         apps << app
       end # direct hit
