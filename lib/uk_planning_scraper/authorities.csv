@@ -30,6 +30,7 @@ Cardiff,https://planningonline.cardiff.gov.uk/online-applications/search.do?acti
 Carlisle,https://publicaccess.carlisle.gov.uk/online-applications/search.do?action=advanced,england
 Cheshire West and Chester,https://pa.cheshirewestandchester.gov.uk/online-applications/search.do?action=advanced,chester cheshire england
 City of London,http://www.planning2.cityoflondon.gov.uk/online-applications/search.do?action=advanced,london innerlondon northlondon england
+Conwy,http://www.conwy.gov.uk/en/Resident/Planning-Building-Control-and-Conservation/Planning-Applications/Planning-Explorer.aspx,wales
 Cornwall,http://planning.cornwall.gov.uk/online-applications/search.do?action=advanced,england
 Croydon,http://publicaccess2.croydon.gov.uk/online-applications/search.do?action=advanced,londonboroughs london
 Cornwall,http://planning.cornwall.gov.uk/online-applications/search.do?action=advanced,england
@@ -46,6 +47,7 @@ East Lindsey,https://publicaccess.e-lindsey.gov.uk/online-applications/search.do
 Edinburgh,https://citydev-portal.edinburgh.gov.uk/idoxpa-web/search.do?action=advanced,scotland
 Enfield,https://planningandbuildingcontrol.enfield.gov.uk/online-applications/search.do?action=advanced,londonboroughs london
 Epsom and Ewell,http://eplanning.epsom-ewell.gov.uk/online-applications/search.do?action=advanced,surrey england
+Fife,https://planning.fife.gov.uk/online/search.do?action=advanced,scotland
 Glasgow,https://publicaccess.glasgow.gov.uk/online-applications/search.do?action=advanced,scotland
 Greenwich,https://planning.royalgreenwich.gov.uk/online-applications/search.do?action=advanced,london innerlondon southlondon england londonboroughs
 Hackney,http://planning.hackney.gov.uk/Northgate/PlanningExplorer/generalsearch.aspx,londonboroughs london
@@ -93,6 +95,7 @@ Richmond,http://www2.richmond.gov.uk/PlanData2/Planning_Report.aspx,london londo
 Rhondda Cynon Taff,https://planningonline.rctcbc.gov.uk/online-applications/search.do?action=advanced,wales
 Rochdale,http://publicaccess.rochdale.gov.uk/online-applications/search.do?action=advanced,england greatermanchester
 Rutland,https://publicaccess.rutland.gov.uk/online-applications/search.do?action=advanced,england
+Scottish Government S36,http://www.energyconsents.scot/ApplicationSearch.aspx?T=2,scotland
 Salford,http://publicaccess.salford.gov.uk/publicaccess/search.do?action=advanced,england greatermanchester
 Sefton,https://pa.sefton.gov.uk/online-applications/search.do?action=advanced,england merseyside liverpoolcityregion
 Sheffield,https://planningapps.sheffield.gov.uk/online-applications/search.do?action=advanced,england
