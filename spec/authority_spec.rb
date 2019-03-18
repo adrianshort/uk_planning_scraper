@@ -1,13 +1,11 @@
 require 'spec_helper'
 
 describe UKPlanningScraper::Authority do
-
   describe '#named' do
-
-    let(:authority) { described_class.named(authority_name) }
+    subject(:authority) { UKPlanningScraper::Authority.named(name) }
 
     context 'when authority exists' do
-      let(:authority_name) { 'Westminster' }
+      let(:name) { 'Westminster' }
 
       it 'returns an authority' do
         expect(authority).to be_a(UKPlanningScraper::Authority)
@@ -15,7 +13,7 @@ describe UKPlanningScraper::Authority do
     end
 
     context 'when authority does not exist' do
-      let(:authority_name) { 'Westmonster' }
+      let(:name) { 'Westmonster' }
 
       it 'raises an error' do
         expect { authority }.to raise_error(UKPlanningScraper::AuthorityNotFound)
@@ -24,11 +22,10 @@ describe UKPlanningScraper::Authority do
   end
 
   describe '#all' do
+    let(:all) { UKPlanningScraper::Authority.all }
 
-    let(:all) { described_class.all }
-
-    it 'returns all authorities' do
-      expect(all.count).to eq(112)
+    it 'returns more than 100 authorities' do
+      expect(all.count).to be > 100
     end
 
     it 'returns a list of authorities' do
@@ -40,18 +37,22 @@ describe UKPlanningScraper::Authority do
   end
 
   describe '#tagged' do
-    let (:tagged_london) { described_class.tagged('london') }
+    let (:authority) { UKPlanningScraper::Authority.tagged(tag) }
 
-    it 'returns all London authorities' do
-      expect(tagged_london.count).to eq(35)
+    context 'when tagged london' do
+      let(:tag) { 'london' }
+
+      it 'returns all 35 London authorities' do
+        expect(authority.count).to eq(35)
+      end
     end
 
-    let (:tagged_londonboroughs) { described_class.tagged('londonboroughs') }
+    context 'when tagged londonboroughs' do
+      let(:tag) { 'londonboroughs' }
 
-    it 'returns all London boroughs' do
-      expect(tagged_londonboroughs.count).to eq(32)
+      it 'returns all 32 London boroughs' do
+        expect(authority.count).to eq(32)
+      end
     end
-
   end
-
 end

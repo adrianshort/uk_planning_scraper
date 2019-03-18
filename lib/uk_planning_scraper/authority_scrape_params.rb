@@ -51,6 +51,12 @@ module UKPlanningScraper
       self
     end
     
+    def council_reference(s)
+      check_class(s, String)
+      @scrape_params[:council_reference] = s.strip
+      self
+    end
+    
     def applicant_name(s)
       unless system == 'idox'
         raise NoMethodError.new("applicant_name is only implemented for Idox. \
