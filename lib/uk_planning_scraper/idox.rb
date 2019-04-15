@@ -120,6 +120,8 @@ module UKPlanningScraper
         puts "#{i + 1} of #{apps.size}: #{app.info_url}"
 
         parse_info_url(app) if app.info_url
+        parse_property_url(app) if app.property_url
+        parse_property_detail_urls(app) if app.property_detail_urls
       end # scrape summary tab for apps
       apps
     end # scrape_idox
@@ -186,9 +188,73 @@ module UKPlanningScraper
               puts "Error: key '#{key}' not found"
           end # case
         end # each row
+
+        # find associated property link
+        property_association_link = res.at('p.associatedproperty a')
+
+        if property_association_link
+          app.property_url = base_url + property_association_link[:href]
+          app.property_count = property_association_link.inner_text.to_i
+        end
       else
         puts "Error: HTTP #{res.code}"
       end # if
+    end
+
+    def parse_property_url(app)
+      # get URLs of property pages
+      app.property_detail_urls = []
+
+      res = agent.get(app.property_url)
+
+      if res.code == '200'
+        res.search('#Property li a').each do |property_link|
+          app.property_detail_urls << base_url + property_link[:href]
+        end
+      else
+        puts "Error: HTTP #{res.code}"
+      end
+    end
+
+    def parse_property_detail_urls(app)
+      # get property details
+      app.properties = []
+
+      app.property_detail_urls.each do |property_url|
+        res = agent.get(property_url)
+
+        if res.code == '200'
+          property = Property.new
+
+          res.search('#propertyAddress tr').each do |row|
+            key = row.at('th').inner_text.strip
+            value = row.at('td').inner_text.strip
+
+            case key
+            when 'UPRN:'
+              property.uprn = value
+            when 'Full Address:'
+              property.address = value unless value.empty?
+            when 'Property Number:'
+              property.number = value unless value.empty?
+            when 'Street:'
+              property.street = value unless value.empty?
+            when 'Town:'
+              property.town = value unless value.empty?
+            when 'Postcode:'
+              property.postcode = value unless value.empty?
+            when 'Ward:'
+              property.ward = value unless value.empty?
+            when 'Parish:'
+              property.parish = value unless value.empty?
+            end
+          end
+
+          app.properties << property
+        else
+          puts "Error: HTTP #{res.code}"
+        end
+      end
     end
   end # class
 end

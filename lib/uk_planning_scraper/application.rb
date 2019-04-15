@@ -16,6 +16,10 @@ module UKPlanningScraper
     attr_accessor :date_decision
     attr_accessor :appeal_status
     attr_accessor :appeal_decision
+    attr_accessor :property_count
+    attr_accessor :property_url
+    attr_accessor :property_detail_urls
+    attr_accessor :properties
 
     def to_hash
       {
@@ -34,7 +38,10 @@ module UKPlanningScraper
         documents_url: @documents_url,
         alternative_reference: @alternative_reference,
         appeal_status: @appeal_status,
-        appeal_decision: @appeal_decision
+        appeal_decision: @appeal_decision,
+        property_count: @property_count,
+        property_detail_urls: @property_detail_urls,
+        properties: @properties
       }
     end
 
