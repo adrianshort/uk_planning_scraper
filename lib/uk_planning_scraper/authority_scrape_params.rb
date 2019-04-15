@@ -4,7 +4,7 @@ module UKPlanningScraper
   class Authority
     # Parameter methods for Authority#scrape
     # Desgined to be method chained, eg:
-    # 
+    #
     # applications = UKPlanningScraper::Authority.named("Barnet"). \
     # development_type("Q22").keywords("illuminat"). \
     # validated_days(30).scrape
@@ -17,7 +17,7 @@ module UKPlanningScraper
       unless n > 0
         raise ArgumentError.new("validated_days must be greater than 0")
       end
-      
+
       validated_from(Date.today - (n - 1))
       validated_to(Date.today)
       self
@@ -31,7 +31,7 @@ module UKPlanningScraper
       unless n > 0
         raise ArgumentError.new("received_days must be greater than 0")
       end
-      
+
       received_from(Date.today - (n - 1))
       received_to(Date.today)
       self
@@ -45,18 +45,18 @@ module UKPlanningScraper
       unless n > 0
         raise ArgumentError.new("decided_days must be greater than 0")
       end
-      
+
       decided_from(Date.today - (n - 1))
       decided_to(Date.today)
       self
     end
-    
+
     def applicant_name(s)
       unless system == 'idox'
         raise NoMethodError.new("applicant_name is only implemented for Idox. \
           This authority (#{@name}) is #{system.capitalize}.")
       end
-      
+
       check_class(s, String)
       @scrape_params[:applicant_name] = s.strip
       self
@@ -67,7 +67,7 @@ module UKPlanningScraper
         raise NoMethodError.new("application_type is only implemented for \
           Idox. This authority (#{@name}) is #{system.capitalize}.")
       end
-      
+
       check_class(s, String)
       @scrape_params[:application_type] = s.strip
       self
@@ -78,14 +78,14 @@ module UKPlanningScraper
         raise NoMethodError.new("development_type is only implemented for \
           Idox. This authority (#{@name}) is #{system.capitalize}.")
       end
-      
+
       check_class(s, String)
       @scrape_params[:development_type] = s.strip
       self
     end
 
     private
-    
+
     # Handle the simple params with this
     def method_missing(method_name, *args)
       sc_params = {
@@ -97,18 +97,18 @@ module UKPlanningScraper
         decided_to: Date,
         keywords: String
       }
-      
+
       value = args[0]
-      
+
       if sc_params[method_name]
         check_class(value, sc_params[method_name], method_name.to_s)
         value.strip! if value.class == String
-        
+
         if value.class == Date && value > Date.today
           raise ArgumentError.new("#{method_name} can't be a date in the " + \
             "future (#{value.to_s})")
         end
-        
+
         @scrape_params[method_name] = value
         self
       else
@@ -119,7 +119,7 @@ module UKPlanningScraper
     def clear_scrape_params
       @scrape_params = {}
     end
-    
+
     # https://stackoverflow.com/questions/5100299/how-to-get-the-name-of-the-calling-method
     def check_class(
       param_value,

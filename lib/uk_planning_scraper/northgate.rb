@@ -8,10 +8,10 @@ module UKPlanningScraper
     def scrape_northgate(params, options)
       puts "Using Northgate scraper."
       base_url = @url.match(/(https?:\/\/.+?)\//)[1]
-      
+
       # Remove 'generalsearch.aspx' from the end and add '/Generic/' - case sensitive?
       generic_url = @url.match(/.+\//)[0] + 'Generic/'
-      
+
       apps = []
 
       $stdout.sync = true # Flush output buffer after every write so log messages appear immediately.

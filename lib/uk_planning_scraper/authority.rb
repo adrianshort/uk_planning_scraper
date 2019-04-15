@@ -3,7 +3,7 @@ require 'csv'
 module UKPlanningScraper
   class Authority
     attr_reader :name, :url
-    
+
     @@authorities = []
 
     def initialize(name, url)
@@ -31,7 +31,7 @@ module UKPlanningScraper
         raise SystemNotSupported.new("Planning system not supported for \
           #{@name} at URL: #{@url}")
       end
-      
+
       # Post processing
       @applications.each do |app|
         app.authority_name = @name
@@ -41,32 +41,32 @@ module UKPlanningScraper
       output = []
       # FIXME - silently ignores invalid apps. How should we handle them?
       @applications.each { |app| output << app.to_hash if app.valid? }
-      
+
       # Reset so that old params don't get used for new scrapes
       clear_scrape_params
-      
+
       output  # Single point of successful exit
     end
-    
+
     def tags
       @tags.sort
     end
-    
+
     # Add multiple tags to existing tags
     def add_tags(tags)
       tags.each { |t| add_tag(t) }
     end
-    
+
     # Add a single tag to existing tags
     def add_tag(tag)
       clean_tag = tag.strip.downcase.gsub(' ', '')
       @tags << clean_tag unless tagged?(clean_tag) # prevent duplicates
     end
-    
+
     def tagged?(tag)
       @tags.include?(tag)
     end
-    
+
     def system
       if @url.match(/search\.do\?action=advanced/i)
         'idox'
@@ -84,18 +84,18 @@ module UKPlanningScraper
     def self.all
       @@authorities
     end
-    
+
     # List all the tags in use
     def self.tags
       tags = []
       @@authorities.each { |a| tags << a.tags }
       tags.flatten.uniq.sort
     end
-    
+
     def self.named(name)
       authority = @@authorities.find { |a| name == a.name }
       raise AuthorityNotFound if authority.nil?
-      authority 
+      authority
     end
 
     # Tagged x
@@ -125,11 +125,11 @@ module UKPlanningScraper
       CSV.foreach(File.join(File.dirname(__dir__), 'uk_planning_scraper', \
           'authorities.csv'), :headers => true) do |line|
         auth = Authority.new(line['authority_name'], line['url'])
-        
+
         if line['tags']
           auth.add_tags(line['tags'].split(/\s+/))
         end
-        
+
         auth.add_tag(auth.system)
         @@authorities << auth
       end

@@ -37,7 +37,7 @@ module UKPlanningScraper
         appeal_decision: @appeal_decision
       }
     end
-    
+
     def valid?
       return true if @authority_name && @council_reference && @info_url
       false

@@ -7,7 +7,7 @@ module UKPlanningScraper
     def scrape_idox(params, options)
       puts "Using Idox scraper."
       base_url = @url.match(/(https?:\/\/.+?)\//)[1]
-      
+
       apps = []
 
       agent = Mechanize.new
@@ -31,7 +31,7 @@ module UKPlanningScraper
       }.each { |f| form.add_field!(f) unless form.has_field?(f) }
 
       date_format = "%d/%m/%Y"
-      
+
       form.send(:"date(applicationReceivedStart)", params[:received_from].strftime(date_format)) if params[:received_from]
       form.send(:"date(applicationReceivedEnd)", params[:received_to].strftime(date_format)) if params[:received_to]
 
@@ -42,12 +42,12 @@ module UKPlanningScraper
       form.send(:"date(applicationDecisionEnd)", params[:decided_to].strftime(date_format)) if params[:decided_to]
 
       form.send(:"searchCriteria\.description", params[:keywords])
-      
+
       # Some councils don't have the applicant name on their form, eg Bexley
       form.send(:"searchCriteria\.applicantName", params[:applicant_name]) if form.has_field? 'searchCriteria.applicantName'
-      
+
       form.send(:"searchCriteria\.caseType", params[:application_type]) if form.has_field? 'searchCriteria.caseType'
-      
+
       # Only some Idox sites (eg Bolton) have a 'searchCriteria.developmentType' parameter
       form.send(:"searchCriteria\.developmentType", params[:development_type]) if form.has_field? 'searchCriteria.developmentType'
 
@@ -56,7 +56,7 @@ module UKPlanningScraper
       if page.search('.errors').inner_text.match(/Too many results found/i)
         raise TooManySearchResults.new("Scrape in smaller chunks. Use shorter date ranges and/or more search parameters.")
       end
-      
+
       loop do
         # Parse search results
         items = page.search('li.searchresult')
@@ -69,7 +69,7 @@ module UKPlanningScraper
           # Parse info line
           info_line = app.at("p.metaInfo").inner_text.strip
           bits = info_line.split('|').map { |e| e.strip.delete("\r\n") }
-          
+
           bits.each do |bit|
             if matches = bit.match(/Ref\. No:\s+(.+)/)
               data.council_reference = matches[1]
@@ -78,7 +78,7 @@ module UKPlanningScraper
             if matches = bit.match(/(Received|Registered):\s+.*(\d{2}\s\w{3}\s\d{2}\d{2}?)/)
               data.date_received = Date.parse(matches[2])
             end
-            
+
             if matches = bit.match(/Validated:\s+.*(\d{2}\s\w{3}\s\d{2}\d{2}?)/)
               data.date_validated = Date.parse(matches[1])
             end
@@ -92,10 +92,10 @@ module UKPlanningScraper
           data.info_url = base_url + app.at('a')['href']
           data.address = app.at('p.address').inner_text.strip
           data.description = app.at('a').inner_text.strip
-          
+
           apps << data
         end
-        
+
         # Get the Next button from the pager, if there is one
         if next_button = page.at('a.next')
           next_url = base_url + next_button[:href]# + '&searchCriteria.resultsPerPage=100'
@@ -106,13 +106,13 @@ module UKPlanningScraper
           break
         end
       end
-      
+
       # Scrape the summary tab for each app
       apps.each_with_index do |app, i|
         sleep options[:delay]
         puts "#{i + 1} of #{apps.size}: #{app.info_url}"
         res = agent.get(app.info_url)
-        
+
         if res.code == '200' # That's a String not an Integer, ffs
           # Parse the summary tab for this app
 
@@ -133,14 +133,14 @@ module UKPlanningScraper
               app.documents_url = base_url + documents_link[:href]
             end
           end
-          
+
           # We need to find values in the table by using the th labels.
           # The row indexes/positions change from site to site (or even app to app) so we can't rely on that.
 
           res.search('#simpleDetailsTable tr').each do |row|
             key = row.at('th').inner_text.strip
             value = row.at('td').inner_text.strip
-            
+
             case key
               when 'Reference'
                 app.council_reference = value
