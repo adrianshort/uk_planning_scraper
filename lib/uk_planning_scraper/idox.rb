@@ -13,13 +13,23 @@ module UKPlanningScraper
       @agent ||= Mechanize.new
     end
 
+    def get(url, &block)
+      puts "Getting: #{url}"
+      res = agent.get(url)
+
+      if res.code == '200' # That's a String not an Integer, ffs
+        block_given? ? block.call(res) : res
+      else
+        puts "Error: HTTP #{res.code}"
+      end
+    end
+
     def scrape_idox(params, options)
       puts "Using Idox scraper."
 
       apps = []
 
-      puts "Getting: #{@url}"
-      page = agent.get(@url) # load the search form page
+      page = get(@url) # load the search form page
 
       # Check that the search form is actually present.
       # When Idox has an internal error it returns an error page with HTTP 200.
@@ -107,8 +117,7 @@ module UKPlanningScraper
         if next_button = page.at('a.next')
           next_url = base_url + next_button[:href]# + '&searchCriteria.resultsPerPage=100'
           sleep options[:delay]
-          puts "Getting: #{next_url}"
-          page = agent.get(next_url)
+          page = get(next_url)
         else
           break
         end
@@ -117,7 +126,7 @@ module UKPlanningScraper
       # Scrape the summary tab for each app
       apps.each_with_index do |app, i|
         sleep options[:delay]
-        puts "#{i + 1} of #{apps.size}: #{app.info_url}"
+        puts "#{i + 1} of #{apps.size}"
 
         parse_info_url(app) if app.info_url
         parse_property_url(app) if app.property_url
@@ -127,9 +136,7 @@ module UKPlanningScraper
     end # scrape_idox
 
     def parse_info_url(app)
-      res = agent.get(app.info_url)
-
-      if res.code == '200' # That's a String not an Integer, ffs
+      get(app.info_url) do |res|
         # Parse the summary tab for this app
 
         app.scraped_at = Time.now
@@ -196,23 +203,17 @@ module UKPlanningScraper
           app.property_url = base_url + property_association_link[:href]
           app.property_count = property_association_link.inner_text.to_i
         end
-      else
-        puts "Error: HTTP #{res.code}"
-      end # if
+      end # get
     end
 
     def parse_property_url(app)
       # get URLs of property pages
       app.property_detail_urls = []
 
-      res = agent.get(app.property_url)
-
-      if res.code == '200'
+      get(app.property_url) do |res|
         res.search('#Property li a').each do |property_link|
           app.property_detail_urls << base_url + property_link[:href]
         end
-      else
-        puts "Error: HTTP #{res.code}"
       end
     end
 
@@ -221,9 +222,7 @@ module UKPlanningScraper
       app.properties = []
 
       app.property_detail_urls.each do |property_url|
-        res = agent.get(property_url)
-
-        if res.code == '200'
+        get(property_url) do |res|
           property = Property.new
 
           res.search('#propertyAddress tr').each do |row|
@@ -251,8 +250,6 @@ module UKPlanningScraper
           end
 
           app.properties << property
-        else
-          puts "Error: HTTP #{res.code}"
         end
       end
     end
