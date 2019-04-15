@@ -129,6 +129,8 @@ module UKPlanningScraper
         puts "#{i + 1} of #{apps.size}"
 
         parse_info_url(app) if app.info_url
+
+        next unless params[:include_property]
         parse_property_url(app) if app.property_url
         parse_property_detail_urls(app) if app.property_detail_urls
       end # scrape summary tab for apps

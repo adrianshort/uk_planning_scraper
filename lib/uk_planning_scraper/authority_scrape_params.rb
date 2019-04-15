@@ -84,6 +84,16 @@ module UKPlanningScraper
       self
     end
 
+    def include_property
+      unless system == 'idox'
+        raise NoMethodError.new("include_property is only implemented for \
+          Idox. This authority (#{@name}) is #{system.capitalize}.")
+      end
+
+      @scrape_params[:include_property] = true
+      self
+    end
+
     private
 
     # Handle the simple params with this
