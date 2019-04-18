@@ -22,7 +22,7 @@ module UKPlanningScraper
     attr_accessor :properties
 
     def to_hash
-      {
+      base = {
         scraped_at: @scraped_at,
         authority_name: @authority_name,
         council_reference: @council_reference,
@@ -39,10 +39,21 @@ module UKPlanningScraper
         alternative_reference: @alternative_reference,
         appeal_status: @appeal_status,
         appeal_decision: @appeal_decision,
-        property_count: @property_count,
-        property_detail_urls: @property_detail_urls,
-        properties: @properties
+        property_count: @property_count
       }
+
+      @property_detail_urls.each_with_index do |url, idx|
+        base["property_detail_url_#{idx + 1}".to_sym] = url
+      end if @property_detail_urls
+
+      @properties.each_with_index do |property, idx|
+        property_hash = property.to_hash
+        property_hash.transform_keys! { |k| "property_#{idx + 1}_#{k}".to_sym }
+
+        base.merge!(property_hash)
+      end if @properties
+
+      base
     end
 
     def valid?
