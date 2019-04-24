@@ -213,7 +213,9 @@ module UKPlanningScraper
       app.property_detail_urls = []
 
       get(app.property_url) do |res|
-        res.search('#Property li a').each do |property_link|
+        res.search('#Property li a').each_with_index do |property_link, index|
+          break if index >= 10
+
           app.property_detail_urls << base_url + property_link[:href]
         end
       end
