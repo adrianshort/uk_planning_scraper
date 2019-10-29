@@ -23,7 +23,7 @@ Bristol,https://planningonline.bristol.gov.uk/online-applications/search.do?acti
 Bromley,https://searchapplications.bromley.gov.uk/online-applications/search.do?action=advanced,londonboroughs london
 Bury,https://planning.bury.gov.uk/online-applications/search.do?action=advanced,england greatermanchester
 Calderdale,https://portal.calderdale.gov.uk/online-applications/search.do?action=advanced,england westyorkshire
-Camden,http://planningrecords.camden.gov.uk/Northgate/PlanningExplorer17/GeneralSearch.aspx,londonboroughs london
+Camden,https://planningrecords.camden.gov.uk/Northgate/PlanningExplorer/GeneralSearch.aspx,londonboroughs london
 Cardiff,https://planningonline.cardiff.gov.uk/online-applications/search.do?action=advanced,wales
 Cheshire West and Chester,https://pa.cheshirewestandchester.gov.uk/online-applications/search.do?action=advanced,chester cheshire england
 City of London,http://www.planning2.cityoflondon.gov.uk/online-applications/search.do?action=advanced,london innerlondon northlondon england
@@ -48,7 +48,7 @@ Havering,http://development.havering.gov.uk/OcellaWeb/planningSearch,london lond
 Hillingdon,http://planning.hillingdon.gov.uk/OcellaWeb/planningSearch,london londonboroughs westlondon outerlondon
 Hounslow,http://planning.hounslow.gov.uk/planning_search.aspx,london londonboroughs
 Hull,https://www.hullcc.gov.uk/padcbc/publicaccess-live/search.do?action=advanced,england
-Islington,http://planning.islington.gov.uk/northgate/planningexplorer/generalsearch.aspx,londonboroughs london
+Islington,https://planning.islington.gov.uk/northgate/planningexplorer/generalsearch.aspx,londonboroughs london
 Kensington and Chelsea,https://www.rbkc.gov.uk/planning/searches/default.aspx?adv=1#advancedSearch,london londonboroughs
 Kingston upon Thames,https://publicaccess.kingston.gov.uk/online-applications/search.do?action=advanced,london londonboroughs
 Knowsley,https://planapp.knowsley.gov.uk/online-applications/search.do?action=advanced,england merseyside liverpoolcityregion
@@ -58,7 +58,7 @@ Lewisham,http://planning.lewisham.gov.uk/online-applications/search.do?action=ad
 Liverpool,http://northgate.liverpool.gov.uk/PlanningExplorer17/GeneralSearch.aspx,england merseyside liverpoolcityregion
 London Legacy Development Corporation,http://planningregister.londonlegacy.co.uk/swift/apas/run/wphappcriteria.display,london developmentcorporations londondevelopmentcorporations
 Manchester,https://pa.manchester.gov.uk/online-applications/search.do?action=advanced,england greatermanchester
-Merton,http://planning.merton.gov.uk/Northgate/PlanningExplorerAA/GeneralSearch.aspx,london outerlondon southlondon england londonboroughs
+Merton,https://planning.merton.gov.uk/Northgate/PlanningExplorerAA/GeneralSearch.aspx,london outerlondon southlondon england londonboroughs
 Milton Keynes,https://publicaccess2.milton-keynes.gov.uk/online-applications/search.do?action=advanced,england
 Newcastle upon Tyne,https://publicaccessapplications.newcastle.gov.uk/online-applications/search.do?action=advanced,england tyneandwear
 Newham,https://pa.newham.gov.uk/online-applications/search.do?action=advanced,londonboroughs london londonboroughs
