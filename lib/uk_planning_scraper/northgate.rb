@@ -114,8 +114,8 @@ module UKPlanningScraper
           app.address = cells[1].inner_text.strip
           app.description = cells[2].inner_text.strip
           app.status = cells[3].inner_text.strip
-          raw_date_received = cells[4].inner_text.strip
-          app.date_received = Date.parse(raw_date_received) if raw_date_received != '--'
+          raw_date_validated = cells[4].inner_text.strip
+          app.date_validated = Date.parse(raw_date_validated) if raw_date_validated != '--'
           app.decision = cells[5].inner_text.strip if cells[5] # Some councils don't have this column, eg Hackney
 
           apps << app
