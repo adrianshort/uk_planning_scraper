@@ -95,6 +95,12 @@ module UKPlanningScraper
       self
     end
 
+    def status(s)
+      check_class(s, String)
+      @scrape_params[:status] = s.strip
+      self
+    end
+
     private
     
     # Handle the simple params with this

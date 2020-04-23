@@ -50,6 +50,11 @@ module UKPlanningScraper
         form_vars['dateStart'] = params[:decided_from].to_s if params[:decided_from] # YYYY-MM-DD
         form_vars['dateEnd'] = params[:decided_to].to_s if params[:decided_to] # YYYY-MM-DD
       end
+      
+      # Status
+      if params[:status]
+        form_vars['cboStatusCode'] = params[:status]
+      end
 
       # Case officer code
       if params[:case_officer_code]
