@@ -24,6 +24,7 @@ module UKPlanningScraper
         'csbtnSearch' => 'Search' # required
       }
 
+      # Keywords
       form_vars['txtProposal'] = params[:keywords]
 
       # Date received from and to
@@ -48,6 +49,12 @@ module UKPlanningScraper
         form_vars['rbGroup'] = 'rbRange'
         form_vars['dateStart'] = params[:decided_from].to_s if params[:decided_from] # YYYY-MM-DD
         form_vars['dateEnd'] = params[:decided_to].to_s if params[:decided_to] # YYYY-MM-DD
+      end
+
+      # Case officer code
+      if params[:case_officer_code]
+        form_vars['cboCaseOfficerCode'] = params[:case_officer_code]
+        @url.sub!('GeneralSearch.aspx', 'CaseOfficerWorkloadSearch.aspx')
       end
 
       logger.info "Form variables: #{form_vars.to_s}"
