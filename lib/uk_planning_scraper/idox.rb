@@ -42,6 +42,7 @@ module UKPlanningScraper
       form.send(:"date(applicationDecisionEnd)", params[:decided_to].strftime(date_format)) if params[:decided_to]
 
       form.send(:"searchCriteria\.description", params[:keywords])
+      form.send(:"searchCriteria\.caseStatus", params[:status])
       
       # Some councils don't have the applicant name on their form, eg Bexley
       form.send(:"searchCriteria\.applicantName", params[:applicant_name]) if form.has_field? 'searchCriteria.applicantName'

@@ -107,6 +107,7 @@ applicant_name("Mr and Mrs Smith") # Currently Idox only
 application_type("Householder") # Currently Idox only
 development_type("") # Currently Idox only
 case_officer_code("100000") # Northgate only
+status("Pending Consideration") # Check valid status codes for each authority
 
 scrape # runs the scraper
 ```
