@@ -4,9 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/adrianshort/uk_planning_scraper/compare/v0.4.6...master)
+## [Unreleased](https://github.com/adrianshort/uk_planning_scraper/compare/v0.5.0...master)
 
 This functionality is on GitHub but not yet in the gem.
+
+## [0.5.0](https://github.com/adrianshort/uk_planning_scraper/compare/v0.4.6...v0.5.0) - 2020-04-30
 
 ### Added
 
