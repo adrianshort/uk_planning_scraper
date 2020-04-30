@@ -7,10 +7,14 @@ Gem::Specification.new do |spec|
   spec.name          = "uk_planning_scraper"
   spec.version       = UKPlanningScraper::VERSION
   spec.authors       = ["Adrian Short"]
-  spec.email         = 'rubygems@adrianshort.org'
+  spec.email         = 'adrian@adrianshort.org'
   spec.summary       = %q{Scrape planning applications data from UK council websites.}
-  # spec.description   = %q{TODO: Write a longer description or delete this line.}
   spec.homepage      = "https://github.com/adrianshort/uk_planning_scraper/"
+  
+  spec.metadata["homepage_uri"] = spec.homepage
+  spec.metadata["source_code_uri"] = spec.homepage
+  spec.metadata["changelog_uri"] = "https://github.com/adrianshort/uk_planning_scraper/blob/master/CHANGELOG.md"
+
   spec.licenses      = ['LGPL-3.0']
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
