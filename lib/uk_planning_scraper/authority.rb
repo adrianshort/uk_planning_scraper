@@ -70,7 +70,7 @@ module UKPlanningScraper
     def system
       if @url.match(/search\.do\?action=advanced/i)
         'idox'
-      elsif @url.match(/\.aspx/i)
+      elsif @url.match(/generalsearch/i)
         'northgate'
       elsif @url.match(/ocellaweb/i)
         'ocellaweb'
