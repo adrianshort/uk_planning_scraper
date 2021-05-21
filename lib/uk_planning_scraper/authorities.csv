@@ -2,10 +2,10 @@ authority_name,url,tags
 Aberdeen,https://publicaccess.aberdeencity.gov.uk/online-applications/search.do?action=advanced,scotland
 Adur and Worthing,https://planning.adur-worthing.gov.uk/online-applications/search.do?action=advanced,england
 Allerdale,https://planning.allerdale.gov.uk/portal/servlets/ApplicationSearchServlet,england
-Amber Valley,https://www.ambervalley.gov.uk/environment-and-planning/planning/development-management/planning-applications/view-a-planning-application.aspx,england
+Amber Valley,https://www.ambervalley.gov.uk/planning/development-management/view-a-planning-application/,england
 Arun,https://www.arun.gov.uk/weekly-lists,england
 Ashfield,https://www2.ashfield.gov.uk/cfusion/Planning/plan_findfile.cfm,england
-Ashford,http://planning.ashford.gov.uk/planning/Default.aspx?new=true,england
+Ashford,https://planning.ashford.gov.uk/planning/Default.aspx?new=true,england
 Aylesbury Vale,https://publicaccess.aylesburyvaledc.gov.uk/online-applications//search.do?action=advanced&searchType=Application,england
 Babergh,https://planning.baberghmidsuffolk.gov.uk/online-applications/search.do?action=advanced,england
 Barking and Dagenham,http://paplan.lbbd.gov.uk/online-applications/search.do?action=advanced,london outerlondon northlondon england londonboroughs
@@ -40,14 +40,14 @@ Epsom and Ewell,http://eplanning.epsom-ewell.gov.uk/online-applications/search.d
 Gateshead,https://public.gateshead.gov.uk/online-applications/search.do?action=advanced,england tyneandwear
 Glasgow,https://publicaccess.glasgow.gov.uk/online-applications/search.do?action=advanced,scotland
 Greenwich,https://planning.royalgreenwich.gov.uk/online-applications/search.do?action=advanced,london innerlondon southlondon england londonboroughs
-Hackney,http://planning.hackney.gov.uk/Northgate/PlanningExplorer/generalsearch.aspx,londonboroughs london
+Hackney,https://planningapps.hackney.gov.uk/planning/index.html?fa=search,londonboroughs london
 Halton,https://webapp.halton.gov.uk/planningapps/,england cheshire liverpoolcityregion
 Hammersmith and Fulham,http://public-access.lbhf.gov.uk/online-applications/search.do?action=advanced,london innerlondon northlondon england londonboroughs
 Haringey,http://www.planningservices.haringey.gov.uk/portal/servlets/ApplicationSearchServlet,london londonboroughs
 Harrow,http://www.harrow.gov.uk/planningsearch/lg/plansearch.page?org.apache.shale.dialog.DIALOG_NAME=planningsearch&Param=lg.Planning&searchType=detailed,london londonboroughs
 Havering,http://development.havering.gov.uk/OcellaWeb/planningSearch,london londonboroughs eastlondon outerlondon
 Hillingdon,http://planning.hillingdon.gov.uk/OcellaWeb/planningSearch,london londonboroughs westlondon outerlondon
-Hounslow,http://planning.hounslow.gov.uk/planning_search.aspx,london londonboroughs
+Hounslow,https://planning-lbhounslow.msappproxy.net/Planning_Search_Advanced.aspx,london londonboroughs
 Hull,https://www.hullcc.gov.uk/padcbc/publicaccess-live/search.do?action=advanced,england
 Islington,https://planning.islington.gov.uk/northgate/planningexplorer/generalsearch.aspx,londonboroughs london
 Kensington and Chelsea,https://www.rbkc.gov.uk/planning/searches/default.aspx?adv=1#advancedSearch,london londonboroughs
@@ -104,7 +104,7 @@ Tower Hamlets,https://development.towerhamlets.gov.uk/online-applications/search
 Trafford,https://publicaccess.trafford.gov.uk/online-applications/search.do?action=advanced,england greatermanchester
 Wakefield,https://planning.wakefield.gov.uk/online-applications/search.do?action=advanced,england
 Waltham Forest,http://planning.walthamforest.gov.uk/application-search?civica.query.ReceivedDateFrom=20%2F05%2F2018&civica.query.ReceivedDateTo=26%2F05%2F2018,london londonboroughs
-Wandsworth,https://planning1.wandsworth.gov.uk/Northgate/PlanningExplorer/GeneralSearch.aspx,london innerlondon southlondon england londonboroughs
+Wandsworth,https://planning.wandsworth.gov.uk/Northgate/PlanningExplorer/GeneralSearch.aspx,london innerlondon southlondon england londonboroughs
 West Berkshire,https://publicaccess.westberks.gov.uk/online-applications/search.do?action=advanced,england
 Westminster,http://idoxpa.westminster.gov.uk/online-applications/search.do?action=advanced,londonboroughs london
 Wigan,https://apps.wigan.gov.uk/planapps/PlanAppsAppSearch.asp,england greatermanchester
