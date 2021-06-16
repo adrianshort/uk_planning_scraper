@@ -6,7 +6,12 @@ module UKPlanningScraper
   class Authority
     private
     def scrape_northgate(params, options)
-      puts "Using Northgate scraper."
+      logger = Logger.new($stdout)
+      logger.level = Logger::DEBUG
+
+      logger.info "Using Northgate scraper."
+      logger.info "Will also scrape dates page." if params[:include_dates]
+      
       base_url = @url.match(/(https?:\/\/.+?)\//)[1]
       
       # Remove 'generalsearch.aspx' from the end and add '/Generic/' - case sensitive?
@@ -15,8 +20,6 @@ module UKPlanningScraper
       apps = []
 
       $stdout.sync = true # Flush output buffer after every write so log messages appear immediately.
-      logger = Logger.new($stdout)
-      logger.level = Logger::DEBUG
 
       date_regex = /\d{2}-\d{2}-\d{4}/
 
@@ -133,6 +136,46 @@ module UKPlanningScraper
           apps << app
         end
       end
+      
+      if params[:include_dates]
+        apps.each do |app|
+          sleep options[:delay]
+          
+          # Do we need to return the dates_url as part of the Application object? Seems unnecessary.
+          dates_url = app.info_url.sub("PLDetails", "PLDetailsDates")
+          agent = Mechanize.new
+          # agent.agent.http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+          logger.info "Getting dates page for application #{app.council_reference}: #{dates_url}"
+          page = agent.get(dates_url) # load the search form page
+
+          if page.code == '200'
+            page.search(".dataview .list li").each do |element|
+              if bits = element.inner_html.match(/<span>(.+)<\/span>.*?(\d{2}-\d{2}-\d{4})/)
+                # Some labels have tab characters (\t) in them
+                label = bits[1].strip.downcase.sub(/\s+/, ' ')
+                value =  Date.strptime(bits[2], '%d-%m-%Y')
+                
+                case label
+                when 'consultation expiry' # eg Islington, Merton
+                  app.consultation_end_date = value
+                when 'public consultation period ends' # eg Birmingham
+                  app.consultation_end_date = value
+                  
+                when 'stat cons expiry date' # eg Merton
+                  app.statutory_due_date = value
+                when 'statutory expiry date' # eg Birmingham
+                  app.statutory_due_date = value
+                
+                when 'extended expiry' # eg Merton, Islington
+                    app.extended_expiry_date = value
+                end
+              end
+            end
+            
+          end
+        end
+      end
+    
       apps
     end
   end
