@@ -2,7 +2,7 @@ require 'csv'
 
 module UKPlanningScraper
   class Authority
-    attr_reader :name, :url
+    attr_reader :name, :url, :system
     
     @@authorities = []
 
@@ -12,6 +12,19 @@ module UKPlanningScraper
       @tags = [] # Strings in arbitrary order
       @applications = [] # Application objects
       @scrape_params = {}
+      
+      # Determine @system when Authority is created
+      if @url.match(/search\.do\?action=advanced/i)
+        @system = 'idox'
+      elsif @url.match(/generalsearch\.aspx/i)
+        @system = 'northgate'
+      elsif @url.match(/ocellaweb/i)
+        @system = 'ocellaweb'
+      elsif @url.match(/\/apas\//)
+        @system = 'agileplanning'
+      else
+        @system = 'unknownsystem'
+      end
     end
 
     def scrape(options = {})
@@ -67,20 +80,6 @@ module UKPlanningScraper
       @tags.include?(tag)
     end
     
-    def system
-      if @url.match(/search\.do\?action=advanced/i)
-        'idox'
-      elsif @url.match(/generalsearch/i)
-        'northgate'
-      elsif @url.match(/ocellaweb/i)
-        'ocellaweb'
-      elsif @url.match(/\/apas\//)
-        'agileplanning'
-      else
-        'unknownsystem'
-      end
-    end
-
     def self.all
       @@authorities
     end
