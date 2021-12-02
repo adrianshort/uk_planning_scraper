@@ -73,6 +73,15 @@ module UKPlanningScraper
       self
     end
 
+    def include_details
+      unless system == 'northgate'
+        raise NoMethodError.new("include_details is only implemented for Northgate. This authority (#{@name}) is #{system.capitalize}.")
+      end
+      
+      @scrape_params[:include_details] = true
+      self
+    end
+
     def include_dates
       unless system == 'northgate'
         raise NoMethodError.new("include_dates is only implemented for Northgate. This authority (#{@name}) is #{system.capitalize}.")

@@ -74,6 +74,16 @@ module UKPlanningScraper
     # This may change if there are subsequent extensions.
     attr_accessor :extended_expiry_date
 
+    # Application type: Full planning permission, advertisement,
+    # LDC, prior approval etc.
+    # Codes are specific to each local planning authority although there will
+    # be a high degree of overlap between LPAs
+    attr_accessor :application_type
+
+    attr_accessor :location_easting
+    attr_accessor :location_northing
+
+
     def to_hash
       {
         scraped_at: @scraped_at,
@@ -94,7 +104,10 @@ module UKPlanningScraper
         appeal_decision: @appeal_decision,
         consultation_end_date: @consultation_end_date,
         statutory_due_date: @statutory_due_date,
-        extended_expiry_date: @extended_expiry_date
+        extended_expiry_date: @extended_expiry_date,
+        application_type: @application_type,
+        location_easting: @location_easting,
+        location_northing: @location_northing
       }
     end
     

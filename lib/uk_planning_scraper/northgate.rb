@@ -10,6 +10,7 @@ module UKPlanningScraper
       logger.level = Logger::DEBUG
 
       logger.info "Using Northgate scraper."
+      logger.info "Will also scrape details page." if params[:include_details]
       logger.info "Will also scrape dates page." if params[:include_dates]
       
       base_url = @url.match(/(https?:\/\/.+?)\//)[1]
@@ -137,6 +138,7 @@ module UKPlanningScraper
         end
       end
       
+      # Scrape dates page if required
       if params[:include_dates]
         apps.each do |app|
           sleep options[:delay]
@@ -175,7 +177,37 @@ module UKPlanningScraper
           end
         end
       end
-    
+      
+      # Scrape details page if required
+      if params[:include_details]
+        apps.each do |app|
+          sleep options[:delay]
+          agent = Mechanize.new
+          
+          # agent.agent.http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+          logger.info "Getting details page for application #{app.council_reference}: #{app.info_url}"
+          page = agent.get(app.info_url) # load the search form page
+
+          if page.code == '200'
+            page.search(".dataview")[2].search(".list li").each do |element|
+            if bits = element.inner_html.match(/<span>(.+)<\/span>(.+)</)
+                # Some labels have tab characters (\t) in them
+                label = bits[1].downcase.gsub(/[[:space:]]+/, ' ').strip
+                value = bits[2].gsub(/[[:space:]]+/, ' ').strip
+                
+                case label
+                when 'application type'
+                  app.application_type = value
+                when 'location co ordinates'
+                  coords = value.match(/Easting.+?(\d+).+?(\d+)/)
+                  app.location_easting = coords[1].to_i
+                  app.location_northing = coords[2].to_i
+                end
+              end
+            end
+          end
+        end
+      end
       apps
     end
   end
