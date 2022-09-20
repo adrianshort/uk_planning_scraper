@@ -12,7 +12,7 @@ module UKPlanningScraper
     def validated_days(n)
       # Validated within the last n days
       # Assumes that every scraper/system can do a date range search
-      check_class(n, Fixnum)
+      check_class(n, Integer)
 
       unless n > 0
         raise ArgumentError.new("validated_days must be greater than 0")
@@ -26,7 +26,7 @@ module UKPlanningScraper
     def received_days(n)
       # received within the last n days
       # Assumes that every scraper/system can do a date range search
-      check_class(n, Fixnum)
+      check_class(n, Integer)
 
       unless n > 0
         raise ArgumentError.new("received_days must be greater than 0")
@@ -40,7 +40,7 @@ module UKPlanningScraper
     def decided_days(n)
       # decided within the last n days
       # Assumes that every scraper/system can do a date range search
-      check_class(n, Fixnum)
+      check_class(n, Integer)
 
       unless n > 0
         raise ArgumentError.new("decided_days must be greater than 0")

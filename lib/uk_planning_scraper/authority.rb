@@ -2,7 +2,14 @@ require 'csv'
 
 module UKPlanningScraper
   class Authority
-    attr_reader :name, :url, :system
+    # eg "Camden"
+    attr_reader :name 
+    
+    # URL of the advanced search page
+    attr_reader :url
+    
+    # eg "idox", "northgate"
+    attr_reader :system
     
     @@authorities = []
 
@@ -26,7 +33,9 @@ module UKPlanningScraper
         @system = 'unknownsystem'
       end
     end
-
+    
+    # Scrape this authority's website for applications
+    
     def scrape(options = {})
       default_options = {
         delay: 10,
@@ -61,6 +70,7 @@ module UKPlanningScraper
       output  # Single point of successful exit
     end
     
+    # Return a sorted list of tags for this authority
     def tags
       @tags.sort
     end
@@ -121,6 +131,7 @@ module UKPlanningScraper
     def self.load
       # Don't run this method more than once
       return unless @@authorities.empty?
+      
       CSV.foreach(File.join(File.dirname(__dir__), 'uk_planning_scraper', \
           'authorities.csv'), :headers => true) do |line|
         auth = Authority.new(line['authority_name'], line['url'])
