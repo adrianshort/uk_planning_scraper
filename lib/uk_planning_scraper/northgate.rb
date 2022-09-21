@@ -1,6 +1,7 @@
 require 'http'
 require 'nokogiri'
 require 'logger'
+require 'uri'
 
 module UKPlanningScraper
   class Authority
@@ -103,9 +104,13 @@ module UKPlanningScraper
       if response2.code == 302
         # Follow the redirect manually
         # Set the page size (PS) to max so we don't have to page through search results
+				logger.debug "Base URL: #{base_url}"
         logger.debug "Location: #{response2.headers['Location']}"
-        results_url = URI::encode(base_url + response2.headers['Location'].gsub!('PS=10', 'PS=99999'))
-        logger.debug "GET: " + results_url
+
+				location = response2.headers['Location'].gsub!('PS=10', 'PS=99999')
+				results_url = URI(base_url + location)
+
+        logger.debug "GET: " + results_url.to_s
         response3 = HTTP.headers(headers).cookies(cookies).get(results_url)
         logger.debug "Response code: HTTP " + response3.code.to_s
         doc = Nokogiri::HTML(response3.to_s)
@@ -125,8 +130,9 @@ module UKPlanningScraper
           app = Application.new
           app.scraped_at = Time.now
           app.council_reference = cells[0].inner_text.strip
-          app.info_url = URI::encode(generic_url + cells[0].at('a')[:href].strip)
+          app.info_url = generic_url + cells[0].at('a')[:href].strip
           app.info_url.gsub!(/%0./, '') # FIXME. Strip junk chars from URL - how can we prevent this?
+					app.info_url = URI(app.info_url).to_s
           app.address = cells[1].inner_text.strip
           app.description = cells[2].inner_text.strip
           app.status = cells[3].inner_text.strip
