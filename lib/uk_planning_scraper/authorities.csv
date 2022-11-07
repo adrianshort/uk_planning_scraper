@@ -45,6 +45,7 @@ Halton,https://webapp.halton.gov.uk/planningapps/,england cheshire liverpoolcity
 Hammersmith and Fulham,http://public-access.lbhf.gov.uk/online-applications/search.do?action=advanced,london innerlondon northlondon england londonboroughs
 Haringey,http://www.planningservices.haringey.gov.uk/portal/servlets/ApplicationSearchServlet,london londonboroughs
 Harrow,http://www.harrow.gov.uk/planningsearch/lg/plansearch.page?org.apache.shale.dialog.DIALOG_NAME=planningsearch&Param=lg.Planning&searchType=detailed,london londonboroughs
+Harrogate,https://uniformonline.harrogate.gov.uk/online-applications/search.do?action=advanced,england westyorkshire
 Havering,http://development.havering.gov.uk/OcellaWeb/planningSearch,london londonboroughs eastlondon outerlondon
 Hillingdon,http://planning.hillingdon.gov.uk/OcellaWeb/planningSearch,london londonboroughs westlondon outerlondon
 Hounslow,http://planning.hounslow.gov.uk/planning_search.aspx,london londonboroughs
